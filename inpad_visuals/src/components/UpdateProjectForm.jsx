@@ -1,24 +1,24 @@
 import React from "react";
-import DropDownUserList from "./DropDownUserList.jsx";
 import {request, setAuthHeader} from "./axios_helper.js";
+import DropDownUserListForUpdate from "./DropDownUserListForUpdate.jsx";
 
-export default class NewProjectForm extends React.Component{
+export default class UpdateProjectForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            projectName: "",
+            projectName: this.props.projectName,
             state: true,
-            projectInfo: "",
-            displayedUserList: [this.props.userData],
+            projectInfo: this.props.projectInfo,
+            displayedUserList: this.props.displayedUserList,
             showButton: true
         }
     }
 
-    onCreate = (event, projectName, state, projectInfo, userList) => {
+    onUpdate = (event, projectName, state, projectInfo, userList) => {
         event.preventDefault();
         request(
-            "POST",
-            "/projects/",
+            "PUT",
+            `/projects/${this.props.projectId}`,
             {
                 projectName: projectName,
                 state: state,
@@ -31,8 +31,10 @@ export default class NewProjectForm extends React.Component{
             (error) => {
                 setAuthHeader(null);
             }
-        );
-    };
+        )
+        this.props.onChange(false);
+    }
+
     onChangeHandler = (event) => {
         let name = event.target.name;
         let value = event.target.value;
@@ -40,27 +42,30 @@ export default class NewProjectForm extends React.Component{
     };
 
     onSubmitProject = (e) => {
-        this.onCreate(e, this.state.projectName, this.state.state, this.state.projectInfo, this.state.displayedUserList)
+        this.onUpdate(e, this.state.projectName, this.state.state, this.state.projectInfo, this.state.displayedUserList)
     }
+
 
     render() {
         return(
-            <div className="projectFormTab">
-                <div className="createpr">
-                    <form className="formInput" onSubmit={this.onSubmitProject}>
+            <div>
+                <div >
+                    <form className="formUpdate" onSubmit={this.onSubmitProject}>
                         <div className="inpVal">
                             <input type="text" id="projectName" name="projectName" className="form-control" placeholder="Название" onChange={this.onChangeHandler}/>
                         </div>
                         <div className="inpVal">
                             <input type="text" id="projectInfo" name="projectInfo" className="form-control" placeholder="Описание проекта" onChange={this.onChangeHandler}/>
                         </div>
-                        <DropDownUserList userData={this.props.userData} onChange={(current) => this.setState({displayedUserList: current, showButton: !this.state.showButton})}/>
-                        <div className="middle-button">
-                            {this.state.showButton && <button type="submit" className="btn btn-outline-dark btn-block mb-4">Создать</button>}
+                        <DropDownUserListForUpdate userData={this.props.displayedUserList} onChange={(current) => this.setState({displayedUserList: current, showButton: !this.state.showButton})}/>
+                        <div>
+                            {this.state.showButton && <button type="submit" className="btn btn-outline-dark btn-block mb-4">Изменить</button>}
+                            <button onClick={() => this.props.onChange(false)} type="button" className="btn btn-outline-dark btn-block mb-4">Назад</button>
                         </div>
                     </form>
                 </div>
             </div>
         )
     }
+
 }

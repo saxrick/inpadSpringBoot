@@ -2,7 +2,7 @@ import React from "react";
 import {request, setAuthHeader} from "./axios_helper.js";
 
 
-export default class DropDownUserList extends React.Component {
+export default class DropDownUserListForUpdate extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -20,14 +20,13 @@ export default class DropDownUserList extends React.Component {
 
     addUserToDisplay(user){
         this.setState({displayedUserList: [...this.state.displayedUserList, user],
-        userList: [...this.state.userList.filter((userToDelete) => userToDelete !== user)]})
+            userList: [...this.state.userList.filter((userToDelete) => userToDelete !== user)]})
     }
 
     removeUserFromDisplay(user){
         this.setState({displayedUserList: [...this.state.displayedUserList.filter((userToDelete) => userToDelete !== user)],
-        userList: [...this.state.userList, user]})
+            userList: [...this.state.userList, user]})
     }
-
 
     componentDidMount(){
         request(
@@ -35,10 +34,10 @@ export default class DropDownUserList extends React.Component {
             `/users/all`,
             {}).then(
             (response) => {
-                this.setState({userList: response.data.filter((userToDelete) => userToDelete !== response.data[this.props.userData.id - 1]),
-                    displayedUserList: [response.data[this.props.userData.id - 1]]})
-
-            }).catch(
+                this.setState({userList: response.data.filter(userToDelete => (this.props.userData.findIndex((user) => user.login === userToDelete.login) === -1)),
+                    displayedUserList: this.props.userData})
+            })
+            .catch(
             (error) => {
                 if (error.response.status === 401) {
                     setAuthHeader(null);
@@ -49,7 +48,7 @@ export default class DropDownUserList extends React.Component {
         );
     }
 
-    render() {
+    render(){
         return(
             <>
                 <div className="inpVal">

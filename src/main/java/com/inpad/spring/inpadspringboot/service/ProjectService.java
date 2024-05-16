@@ -7,8 +7,7 @@ import com.inpad.spring.inpadspringboot.entity.Project;
 import java.util.List;
 
 public interface ProjectService {
-    public List<Project> getAllProjects();
     public ProjectDTO saveProject(SignUpProjectDTO projectDTO);
-    public Project getProject(int id);
     public void deleteProject(int id);
+    public void saveUpdatedProject(SignUpProjectDTO projectDTO, int id);
 }

@@ -35,8 +35,8 @@ public class ProjectRESTController {
     @GetMapping("/{id}")
     public ProjectDTO getProject(@PathVariable int id){
         ProjectDTO projectDTO = new ProjectDTO();
-        List<ProjectDTO> projectDTOList = projectDTO.getProjectDTOList(repository.findAll());
-        return projectDTOList.get(id - 1);
+        ProjectDTO gotProjectDTO = projectDTO.getProjectDTO(repository.getReferenceById(id));
+        return gotProjectDTO;
     }
 
 
@@ -48,16 +48,14 @@ public class ProjectRESTController {
                 .body(createdProject);
     }
 
-//    @PutMapping("/")
-//    public Project updateProject(@RequestBody SignUpProjectDTO projectDTO){
-//
-//        ProjectDTO updatedProject = projectService.saveProject(projectDTO);
-//
-//    }
+    @PutMapping("/{id}")
+    public void updateProject(@RequestBody SignUpProjectDTO projectDTO, @PathVariable int id){
+        System.out.println(projectDTO);
+        projectService.saveUpdatedProject(projectDTO, id);
+    }
 
     @DeleteMapping("/{id}")
     public String deleteProject(@PathVariable int id){
-        Project project = projectService.getProject(id);
         projectService.deleteProject(id);
         return "Project with id = " + id + " was deleted";
     }

@@ -17,38 +17,25 @@ import java.util.List;
 @Service
 public class ProjectServiceImpl implements ProjectService{
 
-    @Autowired
-    private ProjectDao projectDao;
-
     private final ProjectRepository projectRepository;
     private final ProjectMapper projectMapper;
 
-
-    @Override
-    @Transactional
-    public List<Project> getAllProjects() {
-        return projectDao.getAllProjects();
-    }
-
-
     public ProjectDTO saveProject(SignUpProjectDTO projectDTO) {
         System.out.println(projectDTO);
-
         Project project = projectMapper.signUpToProject(projectDTO);
-
         Project savedProject = projectRepository.save(project);
         return projectMapper.toProjectDTO(savedProject);
     }
 
-    @Override
-    @Transactional
-    public Project getProject(int id) {
-        return projectDao.getProject(id);
+    public void saveUpdatedProject(SignUpProjectDTO projectDTO, int id) {
+        Project updatedProject = projectRepository.getReferenceById(id);
+        updatedProject.setProjectname(projectDTO.getProjectName());
+        updatedProject.setProjectinfo(projectDTO.getProjectInfo());
+        updatedProject.setUsers(projectDTO.getUserList());
+        projectRepository.save(updatedProject);
     }
 
-    @Override
-    @Transactional
     public void deleteProject(int id) {
-        projectDao.deleteProject(id);
+        projectRepository.deleteById(id);
     }
 }

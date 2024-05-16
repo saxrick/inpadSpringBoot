@@ -169,11 +169,21 @@ section ul.userList{
   margin-top: 5%;
 }
 
+.createpr .formUpdate{
+  width: 70%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  margin-top: 5%;
+}
+
 .inpVal{
   margin: 5%;
 
 }
-
 
 .userinpr{
   cursor: pointer;

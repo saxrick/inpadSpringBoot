@@ -1,4 +1,3 @@
-import Project from "./Project/Project.jsx";
 import React from "react";
 import {request, setAuthHeader} from "./axios_helper.js";
 import UpdateProjectForm from "./UpdateProjectForm.jsx";
@@ -37,12 +36,6 @@ export default class ListOfProjects extends React.Component{
 
         return (
             <section>
-
-                {/*<ul>*/}
-                {/*    {this.props.userData.projectList.length && this.state.userData.projectList.sort((a, b) => a.id > b.id ? 1 : -1).map((project) => <Project*/}
-                {/*        key={project.id} projectData={project}*/}
-                {/*        onChange={(current) => this.setState({currentProject: current})}/>)}*/}
-                {/*</ul>*/}
                 {this.state.currentProject !== null && !this.state.isOpenedUpdateForm && <OpenedProject
                     userData={this.state.userData}
                     onChangeUserData={(current) => this.setState({userData: current})}

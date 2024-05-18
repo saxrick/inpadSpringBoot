@@ -1,14 +1,22 @@
 import logo from '/Inpad_logo.png'
 import Button from "./Button/Button.jsx";
-
 import React from "react";
-import nigga from "/nigga.jpg";
+import DropDownMenu from "./DropDownMenu.jsx";
 
 export class Header extends React.Component{
     constructor(props) {
         super(props);
     }
 
+    handleClick(button){
+        this.props.onChange(button.active)
+        if (button.path && button.path === "logout"){
+            this.props.logout()
+        }
+        else if (button.path &&  button.path === "logged"){
+            this.props.logged()
+        }
+    }
     render() {
         return (
             <div className="header">
@@ -22,11 +30,11 @@ export class Header extends React.Component{
                             <Button
                                 key={button.id}
                                 isActive={this.props.active === button.active}
-                                onClick={() => this.props.onChange(button.active)}
+                                onClick={() => this.handleClick(button)}
                             >{button.name}
                             </Button>)}
 
-                    <img onClick={this.props.logout} className="userPic" src={nigga}/>
+                    <DropDownMenu pathList={this.props.pathList}/>
                 </div>
             </div>
         )

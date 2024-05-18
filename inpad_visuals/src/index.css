@@ -58,6 +58,14 @@ body img.tanya{
   /*animation: userPic-spin infinite 20s linear;*/
 }
 
+.userPicBig{
+  height: 250px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: 5%;
+  margin-left: 5%;
+  /*animation: userPic-spin infinite 20s linear;*/
+}
 
 
 .text-container p{
@@ -71,6 +79,12 @@ h3 {
 section ul {
   list-style: none;
   padding: 2rem;
+  text-align: center;
+}
+
+.dropdownlist {
+  list-style: none;
+  padding: 0.5rem;
   text-align: center;
 }
 
@@ -99,7 +113,6 @@ section ul li.user {
 
 section ul.userList{
   display: table;
-
 }
 
 
@@ -273,4 +286,26 @@ ul.userList{
   top: 0;
   bottom: 0;
   margin: auto;
+}
+
+.dropdownList {
+  position: absolute;
+  right: 0;
+  margin-right: 1%;
+  background-color: white;
+  vertical-align: middle;
+  text-align: center;
+  z-index: 9999;
+}
+
+.dropdownElem {
+  display: table;
+  border-bottom: 1px solid #111111;
+  width: 100%;
+  cursor: pointer;
+}
+
+.profileUserData {
+  margin-top: 5%;
+  margin-left: 5%;
 }

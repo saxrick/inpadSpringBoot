@@ -19,14 +19,12 @@ export default class App extends React.Component{
 
     profile = () => {
         this.setState({componentToShow: "profile"})
-        console.log("profile")
     }
 
 
     logout = () => {
         this.setState({componentToShow: "login"})
         setAuthHeader(null);
-        console.log("logout")
     }
 
     onLogin = (e, login, password) => {
@@ -94,23 +92,11 @@ export default class App extends React.Component{
 
 
     render() {
-
-        if (getAuthToken()){
-            this.setState({componentToShow: "logged"})
-        }
         return (
             <>
                 {this.state.componentToShow === "login" && <LoginForm onLogin={this.onLogin} onRegister={this.onRegister}/>}
                 {this.state.componentToShow === "logged" && <MainPage logout={this.logout} profile={this.profile} userData={this.state.userData} />}
-                {this.state.componentToShow === "profile" && <Profile logout={this.logout} logged={this.login} />}
-
-                {/*<BrowserRouter>*/}
-                {/*    <Routes>*/}
-                {/*        <Route path="" element={<MainPage/>} />*/}
-                {/*        <Route path="Profile" element={<Profile/>} />*/}
-                {/*        <Route path="login" element={<LoginForm/>}/>*/}
-                {/*    </Routes>*/}
-                {/*</BrowserRouter>*/}
+                {this.state.componentToShow === "profile" && <Profile logout={this.logout} logged={this.login} userData={this.state.userData}/>}
             </>
         )
     }

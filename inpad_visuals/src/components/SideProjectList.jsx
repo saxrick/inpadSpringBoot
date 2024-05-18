@@ -12,7 +12,6 @@ export default class SideProjectList extends React.Component {
     }
 
     componentDidMount(){
-
         request(
             "GET",
             `/users/${this.props.userData.id}`,
@@ -33,7 +32,6 @@ export default class SideProjectList extends React.Component {
     componentDidUpdate(prevProps) {
         if(!equal(this.props.userData, prevProps.userData)){
             this.setState({userData: this.props.userData})
-            console.log("aboba")
         }
     }
 

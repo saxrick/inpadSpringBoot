@@ -70,7 +70,7 @@ public class UserServiceImpl implements UserService {
 
     public UserDTO register(SignUpDTO userDTO) {
 
-        System.out.println(userDTO);
+
         Optional<User> optionalUser = userRepository.findByLogin(userDTO.getLogin());
 
         if (optionalUser.isEmpty()) {

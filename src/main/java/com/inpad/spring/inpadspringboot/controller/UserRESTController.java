@@ -9,12 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 
 @CrossOrigin
 @RestController
 @RequestMapping("/users")
 public class UserRESTController {
+
+    Logger log = Logger.getLogger(UserRESTController.class.getName());
 
 
     @Autowired
@@ -26,13 +29,14 @@ public class UserRESTController {
     @GetMapping("/all")
     public List<UserDTO> getAllUsers(){
         UserDTO userDTO = new UserDTO();
-        System.out.println(userDTO);
+        log.info(java.time.LocalDateTime.now() + " Запрошен список пользователей");
         return userDTO.getUserDTOList(repository.findAll());
     }
 
     @GetMapping("/{id}")
     public UserDTO getUser(@PathVariable int id){
         UserDTO userDTO = new UserDTO();
+        log.info(java.time.LocalDateTime.now() + " Запрошен пользователь с id " + id);
         return userDTO.getUserDTO(repository.getReferenceById(id));
     }
 

@@ -102,7 +102,7 @@ public class UserDTO {
             projectList.add(projectDTO);
         }
         userDTO.setProjectList(projectList);
-        System.out.println(projectList);
+
         return userDTO;
     }
     @Transactional

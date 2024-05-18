@@ -21,7 +21,7 @@ public class ProjectServiceImpl implements ProjectService{
     private final ProjectMapper projectMapper;
 
     public ProjectDTO saveProject(SignUpProjectDTO projectDTO) {
-        System.out.println(projectDTO);
+
         Project project = projectMapper.signUpToProject(projectDTO);
         Project savedProject = projectRepository.save(project);
         return projectMapper.toProjectDTO(savedProject);

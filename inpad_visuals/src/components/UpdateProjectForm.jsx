@@ -14,6 +14,25 @@ export default class UpdateProjectForm extends React.Component {
         }
     }
 
+    handleUpdateUserData(){
+        this.props.onChange(false)
+        // request(
+        //     "GET",
+        //     `/users/${this.props.userData.id}`,
+        //     {}).then(
+        //     (response) => {
+        //         this.props.onChangeUserData(response.data)
+        //     }).catch(
+        //     (error) => {
+        //         if (error.response.status === 401) {
+        //             setAuthHeader(null);
+        //         } else {
+        //             this.setState({data: error.response.code})
+        //         }
+        //     }
+        // )
+    }
+
     onUpdate = (event, projectName, state, projectInfo, userList) => {
         event.preventDefault();
         request(
@@ -26,7 +45,7 @@ export default class UpdateProjectForm extends React.Component {
                 userList: userList,
             }).then(
             (response) => {
-                console.log(response.data)
+
             }).catch(
             (error) => {
                 setAuthHeader(null);
@@ -45,7 +64,6 @@ export default class UpdateProjectForm extends React.Component {
         this.onUpdate(e, this.state.projectName, this.state.state, this.state.projectInfo, this.state.displayedUserList)
     }
 
-
     render() {
         return(
             <div>
@@ -60,7 +78,7 @@ export default class UpdateProjectForm extends React.Component {
                         <DropDownUserListForUpdate userData={this.props.displayedUserList} onChange={(current) => this.setState({displayedUserList: current, showButton: !this.state.showButton})}/>
                         <div>
                             {this.state.showButton && <button type="submit" className="btn btn-outline-dark btn-block mb-4">Изменить</button>}
-                            <button onClick={() => this.props.onChange(false)} type="button" className="btn btn-outline-dark btn-block mb-4">Назад</button>
+                            <button onClick={this.handleUpdateUserData.bind(this)} type="button" className="btn btn-outline-dark btn-block mb-4">Назад</button>
                         </div>
                     </form>
                 </div>

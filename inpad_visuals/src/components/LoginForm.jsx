@@ -34,7 +34,6 @@ export default class LoginForm extends React.Component {
     };
 
     render() {
-        console.log(getAuthToken())
         return (
             <div className="row justify-content-center">
                 <div className="col-4">

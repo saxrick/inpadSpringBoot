@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import Button from "../Button/Button.jsx";
 import {request, setAuthHeader} from "../axios_helper.js";
 
@@ -37,7 +37,7 @@ export default class Project extends React.Component{
                                         }
                                     );
                                 }}
-                        >{this.state.projectData.projectname}</Button>
+                        >{this.props.projectData.projectname}</Button>
 
                     </p>
                 </a>

@@ -1,19 +1,21 @@
-import {Header} from "./components/Header.jsx";
+import {Header} from "./components/Header.tsx";
 import React from "react";
 import nigga from "/nigga.jpg";
-import {request, setAuthHeader} from "./components/axios_helper.js";
+import {request, setAuthHeader} from "./components/axios_helper.ts";
+import {UserDataType} from "./types/UserDataType.tsx";
 
 
-export default class Profile extends React.Component {
-    constructor(props) {
+export default class Profile extends React.Component<{userData: UserDataType, logout: () => void, logged: () => void}, { active: string, userData: UserDataType, tab: string }> {
+    constructor(props: { userData: UserDataType; logout: () => void; logged: () => void; }) {
         super(props);
-        this.state ={
+        this.state = {
             active: "profile",
-            userData: this.props.userData
+            userData: this.props.userData,
+            tab: ""
         }
-        console.log(this.props)
     }
-    componentDidMount(){
+
+    componentDidMount() {
         request(
             "GET",
             `/users/${this.props.userData.id}`,
@@ -30,13 +32,12 @@ export default class Profile extends React.Component {
     }
 
     render() {
-
         return (
             <>
                 <Header
                     logged={this.props.logged}
                     logout={this.props.logout}
-                    active={this.state.tab} onChange={(current) => this.setState({tab: current})}
+                    active={this.state.tab} onChange={(current: string) => this.setState({tab: current})}
                     buttonList={[
                         {id: 0, name: 'На главную', active: 'main', path: "logged"},
                         {id: 1, name: 'Выход', active: "logout", path: "logout"}]}/>

@@ -1,11 +1,11 @@
-import MainPage from "./MainPage.jsx";
-import React from "react";
-import {getAuthToken, request, setAuthHeader} from "./components/axios_helper.js";
-import LoginForm from "./components/LoginForm.jsx";
-import Profile from "./Profile.jsx";
+import MainPage from "./MainPage.tsx";
+import React, {FormEvent} from "react";
+import {request, setAuthHeader} from "./components/axios_helper.ts";
+import LoginForm from "./components/LoginForm.tsx";
+import Profile from "./Profile.tsx";
 
-export default class App extends React.Component{
-    constructor(props) {
+export default class App extends React.Component<never, {componentToShow: string, userData: object}>{
+    constructor(props: never) {
         super(props);
         this.state = {
             componentToShow: "login",
@@ -21,14 +21,13 @@ export default class App extends React.Component{
         this.setState({componentToShow: "profile"})
     }
 
-
     logout = () => {
         this.setState({componentToShow: "login"})
         setAuthHeader(null);
     }
 
-    onLogin = (e, login, password) => {
-        e.preventDefault()
+    onLogin = (event: FormEvent<HTMLFormElement>, login: string, password: string) => {
+        event.preventDefault()
         request("POST",
             "/login",
             {
@@ -40,13 +39,14 @@ export default class App extends React.Component{
                 this.setState({componentToShow: "logged", userData: response.data})
 
             }).catch((error) => {
-                setAuthHeader(null);
-                this.setState({componentToShow: "login"})
+            console.log(error)
+            setAuthHeader(null);
+            this.setState({componentToShow: "login"})
 
         })
     }
 
-    onRegister = (event, username, login, password, projectList, state) => {
+    onRegister = (event: FormEvent<HTMLFormElement>, username: string, login: string, password: string, projectList: object, state: boolean) => {
         event.preventDefault();
         request(
             "POST",
@@ -64,6 +64,7 @@ export default class App extends React.Component{
 
             }).catch(
             (error) => {
+                console.log(error)
                 setAuthHeader(null);
                 this.setState({componentToShow: "login"})
             }
@@ -92,7 +93,6 @@ export default class App extends React.Component{
 
 
     render() {
-
         return (
             <>
                 {this.state.componentToShow === "login" && <LoginForm onLogin={this.onLogin} onRegister={this.onRegister}/>}
@@ -101,8 +101,5 @@ export default class App extends React.Component{
             </>
         )
     }
-
-
-
 }
 

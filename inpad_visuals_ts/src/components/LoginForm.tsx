@@ -1,10 +1,19 @@
 import * as React from 'react';
 import classNames from 'classnames';
-import {getAuthToken} from "./axios_helper.js";
+import {ChangeEvent, FormEvent} from "react";
 
-export default class LoginForm extends React.Component {
+export default class LoginForm extends React.Component<{onLogin: (event: FormEvent<HTMLFormElement>, login: string, password: string) => void, onRegister: (event: FormEvent<HTMLFormElement>, userName: string, login: string, password: string, projectList: object, state: boolean) => void}, {
+    active: string,
+    userName: string,
+    login: string,
+    password: string,
+    checkPassword: string,
+    state: boolean,
+    projectList: object,
+    onLogin: (event: FormEvent<HTMLFormElement>, login: string, password: string) => void,
+    onRegister: (event: FormEvent<HTMLFormElement>, userName: string, login: string, password: string, projectList: object, state: boolean) => void,}> {
 
-    constructor(props) {
+    constructor(props: {onLogin: (event: FormEvent<HTMLFormElement>, login: string, password: string) => void, onRegister: (event: FormEvent<HTMLFormElement>, userName: string, login: string, password: string, projectList: object, state: boolean) => void}) {
         super(props);
         this.state = {
             active: "login",
@@ -17,21 +26,20 @@ export default class LoginForm extends React.Component {
             onLogin: props.onLogin,
             onRegister: props.onRegister,
         };
-        console.log(typeof(this.state.projectList))
     }
 
-    onChangeHandler = (event) => {
-        let name = event.target.name;
-        let value = event.target.value;
+    onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        const name: string = event.target.name;
+        const value: string = event.target.value;
         this.setState({[name] : value});
     };
 
-    onSubmitLogin = (e) => {
-        this.state.onLogin(e, this.state.login, this.state.password);
+    onSubmitLogin = (event : FormEvent<HTMLFormElement>) => {
+        this.state.onLogin(event, this.state.login, this.state.password);
     };
 
-    onSubmitRegister = (e) => {
-        this.state.onRegister(e, this.state.userName, this.state.login, this.state.password, this.state.projectList, this.state.state);
+    onSubmitRegister = (event: FormEvent<HTMLFormElement>) => {
+        this.state.onRegister(event, this.state.userName, this.state.login, this.state.password, this.state.projectList, this.state.state);
     };
 
     render() {
@@ -70,7 +78,7 @@ export default class LoginForm extends React.Component {
                                 <div className="middle-button">
                                     <button type="submit" className="btn btn-outline-dark btn-block mb-4">Войти</button>
                                 </div>
-                                <h2>{this.state.message}</h2>
+
 
                             </form>
                         </div>
@@ -105,7 +113,6 @@ export default class LoginForm extends React.Component {
                                             className="btn btn-outline-dark btn-block mb-3">Зарегистрироваться
                                     </button>
                                 </div>
-                                    <h2>{this.state.message}</h2>
                             </form>
                         </div>
                     </div>

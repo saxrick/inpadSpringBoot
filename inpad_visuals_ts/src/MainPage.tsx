@@ -1,26 +1,26 @@
-import {Header} from "./components/Header.jsx";
-import Body from "./components/Body.jsx";
-import ListOfProjects from "./components/ListOfProjects.jsx";
+import {Header} from "./components/Header.tsx";
+import Body from "./components/Body.tsx";
+import ListOfProjects from "./components/ListOfProjects.tsx";
 
 import * as React from 'react';
-import NewProjectForm from "./components/NewProjectForm.jsx";
+import NewProjectForm from "./components/NewProjectForm.tsx";
+import {UserDataType} from "./types/UserDataType.tsx";
 
 
-export default class MainPage extends React.Component {
-    constructor(props) {
+export default class MainPage extends React.Component<{userData: UserDataType, logout: () => void, profile: () => void}, {tab: string, userData: UserDataType}> {
+    constructor(props: {userData: UserDataType, logout: () => void, profile: () => void}) {
         super(props);
         this.state = {
-            data: this.props.data,
             tab: 'main',
             userData: props.userData,
         }
-        console.log(this.props)
     }
 
     render() {
         return (
             <>
-                <Header active={this.state.tab} onChange={(current) => this.setState({tab: current})}
+                <Header active={this.state.tab} onChange={(current: string) => this.setState({tab: current})}
+                        logged={() => console.log("")}
                         logout={this.props.logout}
                         profile={this.props.profile}
                         buttonList={[
@@ -40,7 +40,7 @@ export default class MainPage extends React.Component {
                 </>)}
                 {this.state.tab === 'create' && (<>
                     <>
-                        <NewProjectForm userData={this.state.userData} onCreate={this.onCreate}/>
+                        <NewProjectForm userData={this.state.userData}/>
                     </>
                 </>)}
 

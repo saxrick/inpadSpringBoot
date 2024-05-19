@@ -8,7 +8,7 @@ export const getUserData = () => {
     return window.localStorage.getItem('')
 }
 
-export const setAuthHeader = (token) => {
+export const setAuthHeader = (token: string | null) => {
     if (token !== null) {
         window.localStorage.setItem("auth_token", token);
     } else {
@@ -20,7 +20,8 @@ export const setAuthHeader = (token) => {
 axios.defaults.baseURL = 'http://localhost:8080';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
-export const request = (method, url, data) => {
+export const request = (method: string, url: string, data: object) => {
+
     let headers = {};
     if (getAuthToken() !== null && getAuthToken() !== "null") {
         headers = {'Authorization': `Bearer ${getAuthToken()}`};

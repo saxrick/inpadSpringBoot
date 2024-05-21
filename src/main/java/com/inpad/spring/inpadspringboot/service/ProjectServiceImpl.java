@@ -1,15 +1,14 @@
 package com.inpad.spring.inpadspringboot.service;
 
-import com.inpad.spring.inpadspringboot.dao.ProjectDao;
 import com.inpad.spring.inpadspringboot.dto.ProjectDTO;
 import com.inpad.spring.inpadspringboot.dto.SignUpProjectDTO;
 import com.inpad.spring.inpadspringboot.entity.Project;
+import com.inpad.spring.inpadspringboot.entity.User;
 import com.inpad.spring.inpadspringboot.mapper.ProjectMapper;
 import com.inpad.spring.inpadspringboot.repositories.ProjectRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,6 +18,16 @@ public class ProjectServiceImpl implements ProjectService{
 
     private final ProjectRepository projectRepository;
     private final ProjectMapper projectMapper;
+
+    public List<Project> getAllProjects() {
+        return projectRepository.findAll();
+    }
+
+
+    public Project getProject(int id) {
+        return projectRepository.getReferenceById(id);
+    }
+
 
     public ProjectDTO saveProject(SignUpProjectDTO projectDTO) {
 

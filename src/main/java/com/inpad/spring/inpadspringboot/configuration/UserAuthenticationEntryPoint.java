@@ -5,6 +5,8 @@ import com.inpad.spring.inpadspringboot.dto.ErrorDto;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.AuthenticationException;
@@ -13,7 +15,9 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
-@Component
+@Configuration
+
+
 public class UserAuthenticationEntryPoint implements AuthenticationEntryPoint {
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 

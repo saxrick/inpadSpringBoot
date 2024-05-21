@@ -10,6 +10,8 @@ import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
@@ -20,20 +22,21 @@ import java.util.Collections;
 import java.util.Date;
 
 
+@Configuration
 @RequiredArgsConstructor
-@Component
 public class UserAuthProvider {
 
-    @Value("${security.jwt.token.secret-key:secret-key}")
-    private String secretKey;
+
+    private final String secretKey = Base64.getEncoder().encodeToString("${security.jwt.token.secret-key:secret-key}".getBytes());
 
     private final UserService userService;
 
-    @PostConstruct
-    protected void init() {
-        // this is to avoid having the raw secret key available in the JVM
-        secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
-    }
+
+//    @PostConstruct
+//    protected void init() {
+//        // this is to avoid having the raw secret key available in the JVM
+//        secretKey = Base64.getEncoder().encodeToString("${security.jwt.token.secret-key:secret-key}".getBytes());
+//    }
 
     public String createToken(String login) {
         Date now = new Date();

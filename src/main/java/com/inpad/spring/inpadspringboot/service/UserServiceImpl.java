@@ -1,6 +1,5 @@
 package com.inpad.spring.inpadspringboot.service;
 
-import com.inpad.spring.inpadspringboot.dao.UserDao;
 import com.inpad.spring.inpadspringboot.dto.CredentialsDTO;
 import com.inpad.spring.inpadspringboot.dto.SignUpDTO;
 import com.inpad.spring.inpadspringboot.dto.UserDTO;
@@ -13,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 
 import java.nio.CharBuffer;
@@ -25,34 +23,23 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserDao userDao;
-
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
 
 
-    @Override
-    @Transactional
     public List<User> getAllUsers() {
-        return userDao.getAllUsers();
+        return userRepository.findAll();
     }
-
-//    @Override
-//    @Transactional
-//    public void saveUser(User user) {
-//        userDao.saveUser(user);
-//    }
 
 
     public User getUser(int id) {
-        return userDao.getUser(id);
+        return userRepository.getReferenceById(id);
     }
 
-    @Override
-    @Transactional
+
     public void deleteUser(int id) {
-        userDao.deleteUser(id);
+        userRepository.deleteById(id);
     }
 
 

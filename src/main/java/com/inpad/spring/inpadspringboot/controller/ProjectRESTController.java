@@ -26,22 +26,21 @@ public class ProjectRESTController {
     Logger log = Logger.getLogger(ProjectRESTController.class.getName());
 
 
-    private final ProjectRepository repository;
-
-    private final ProjectService projectService;
+    @Autowired
+    ProjectService projectService;
 
     @GetMapping("/all")
     public List<ProjectDTO> getAllProjects(){
         log.info(java.time.LocalDateTime.now() + " Запрошен список проектов");
         ProjectDTO projectDTO = new ProjectDTO();
-        return projectDTO.getProjectDTOList(repository.findAll());
+        return projectDTO.getProjectDTOList(projectService.getAllProjects());
     }
 
     @GetMapping("/{id}")
     public ProjectDTO getProject(@PathVariable int id){
         log.info(java.time.LocalDateTime.now() + " Запрошен проект с id " + id);
         ProjectDTO projectDTO = new ProjectDTO();
-        ProjectDTO gotProjectDTO = projectDTO.getProjectDTO(repository.getReferenceById(id));
+        ProjectDTO gotProjectDTO = projectDTO.getProjectDTO(projectService.getProject(id));
         return gotProjectDTO;
     }
 

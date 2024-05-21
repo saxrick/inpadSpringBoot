@@ -3,6 +3,7 @@ package com.inpad.spring.inpadspringboot.configuration;
 
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -14,7 +15,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import java.util.Arrays;
 
 @Configuration
-@EnableWebMvc
+
 public class WebConfig {
     @Bean
     public FilterRegistrationBean corsFilterBean() {

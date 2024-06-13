@@ -5,14 +5,16 @@ import OpenedProject from "./OpenedProject.tsx";
 import SideProjectList from "./SideProjectList.tsx";
 import {UserDataType} from "../types/UserDataType.tsx";
 import {ProjectType} from "../types/ProjectType.tsx";
+import ForgeViewer from "./ForgeViewer.tsx";
 
-export default class ListOfProjects extends React.Component<{userData: UserDataType}, {userData: UserDataType, currentProject: ProjectType | null, isOpenedUpdateForm: boolean}>{
+export default class ListOfProjects extends React.Component<{userData: UserDataType}, {userData: UserDataType, currentProject: ProjectType | null, isOpenedUpdateForm: boolean, showForge: boolean}>{
     constructor(props: { userData: UserDataType; }) {
         super(props);
         this.state = {
             userData: this.props.userData,
             currentProject: null,
-            isOpenedUpdateForm: false
+            isOpenedUpdateForm: false,
+            showForge: false,
         }
     }
 
@@ -34,13 +36,14 @@ export default class ListOfProjects extends React.Component<{userData: UserDataT
 
     render() {
         return (
-            <section>
-                {this.state.currentProject && !this.state.isOpenedUpdateForm && <OpenedProject
+            <>
+                {!this.state.showForge && this.state.currentProject && !this.state.isOpenedUpdateForm && <OpenedProject
                     userData={this.state.userData}
                     onChangeUserData={(current: UserDataType) => this.setState({userData: current})}
                     onChangeCurrentProject={(current: ProjectType) => this.setState({currentProject: current})}
                     currentProject={this.state.currentProject}
-                    onChange={(current: boolean) => this.setState({isOpenedUpdateForm: current})}/>}
+                    onChange={(current: boolean) => this.setState({isOpenedUpdateForm: current})}
+                    onChangeForgeOpen={() => this.setState({showForge: true})}/>}
 
                 {this.state.currentProject && this.state.isOpenedUpdateForm && <div className="sideproj">
                     <UpdateProjectForm onChange={(current: boolean) => this.setState({isOpenedUpdateForm: current})}
@@ -51,10 +54,12 @@ export default class ListOfProjects extends React.Component<{userData: UserDataT
                                        displayedUserList={this.state.currentProject.userList}/>
                 </div>}
 
-                {this.state.userData && <SideProjectList userData={this.state.userData}
+                {this.state.showForge && <ForgeViewer/>}
+
+                {!this.state.showForge && this.state.userData && <SideProjectList userData={this.state.userData}
                                   onChange={(current: ProjectType) => this.setState({currentProject: current})}/>}
 
-            </section>
+            </>
         )
     }
 

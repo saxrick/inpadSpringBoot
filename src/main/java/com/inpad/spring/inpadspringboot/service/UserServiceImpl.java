@@ -46,13 +46,13 @@ public class UserServiceImpl implements UserService {
 
     public UserDTO login(CredentialsDTO credentialsDTO){
         User user = userRepository.findByLogin(credentialsDTO.getLogin())
-                .orElseThrow(() -> new AppException("Unknown user", HttpStatus.NOT_FOUND));
+                .orElseThrow(() -> new AppException("Неверный логин", HttpStatus.NOT_FOUND));
 
 
         if(passwordEncoder.matches(CharBuffer.wrap(credentialsDTO.getPassword()), user.getPassword())){
             return userMapper.toUserDTO(user);
         }
-        throw new AppException("Invalid password", HttpStatus.BAD_REQUEST);
+        throw new AppException("Неверный пароль", HttpStatus.BAD_REQUEST);
     }
 
     public UserDTO register(SignUpDTO userDTO) {
@@ -71,14 +71,14 @@ public class UserServiceImpl implements UserService {
 
             return userMapper.toUserDTO(savedUser);
         } else{
-            throw new AppException("Login already exists", HttpStatus.BAD_REQUEST);
+            throw new AppException("Пользователь с таким логином уже существует", HttpStatus.BAD_REQUEST);
         }
 
     }
 
     public UserDTO findByLogin(String login){
         User user = userRepository.findByLogin(login)
-                .orElseThrow(() -> new AppException("Unknown user", HttpStatus.NOT_FOUND));
+                .orElseThrow(() -> new AppException("Неверный логин", HttpStatus.NOT_FOUND));
         return userMapper.toUserDTO(user);
     }
 }

@@ -37,14 +37,14 @@ export default class SideProjectList extends React.Component<{userData: UserData
 
     render() {
         return (
-            <>
+            <section>
                 <ul>
                     {this.state.userData.projectList && this.state.userData.projectList.sort((a, b) => a.id > b.id ? 1 : -1)
                         .map((project) => <Project
                             key={project.id} projectData={project}
                             onChange={(current: ProjectType) => this.props.onChange(current)}/>)}
                 </ul>
-            </>
+            </section>
         )
     }
 }

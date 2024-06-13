@@ -1,15 +1,15 @@
 import React from "react";
-import street from "/street.jpg";
+// import street from "/street.jpg";
 import {request, setAuthHeader} from "./axios_helper.ts";
 import equal from "fast-deep-equal";
 import {ProjectType} from "../types/ProjectType.tsx";
 import {UserDataType} from "../types/UserDataType.tsx";
 
-export default class OpenedProject extends React.Component<{currentProject: ProjectType, onChange: (current: boolean) => void, onChangeCurrentProject: (current: ProjectType) => void, onChangeUserData: (current: UserDataType) => void, userData: UserDataType}, {currentProject: ProjectType}> {
-    constructor(props: { currentProject: ProjectType; onChange: (current: boolean) => void; onChangeCurrentProject: (current: ProjectType) => void; onChangeUserData: (current: UserDataType) => void; userData: UserDataType; }) {
+export default class OpenedProject extends React.Component<{currentProject: ProjectType, onChange: (current: boolean) => void, onChangeCurrentProject: (current: ProjectType) => void, onChangeUserData: (current: UserDataType) => void, userData: UserDataType, onChangeForgeOpen: () => void}, {currentProject: ProjectType}> {
+    constructor(props: { currentProject: ProjectType; onChange: (current: boolean) => void; onChangeCurrentProject: (current: ProjectType) => void; onChangeUserData: (current: UserDataType) => void; userData: UserDataType; onChangeForgeOpen: () => void}) {
         super(props);
         this.state = {
-            currentProject: this.props.currentProject
+            currentProject: this.props.currentProject,
         }
     }
 
@@ -94,7 +94,7 @@ export default class OpenedProject extends React.Component<{currentProject: Proj
 
                 {this.props.currentProject.projectinfo && <><p>Описание: {this.props.currentProject.projectinfo}</p>
                     <div className="buttonBlock">
-                        <button className="btn btn-outline-dark btn-block mb-4" type="button">Открыть</button>
+                        <button className="btn btn-outline-dark btn-block mb-4" type="button" onClick={this.props.onChangeForgeOpen}>Открыть проект</button>
                         <br/>
                         <button className="btn btn-outline-dark btn-block mb-4"
                                 onClick={() => this.props.onChange(true)} type="button">Изменить
@@ -102,13 +102,13 @@ export default class OpenedProject extends React.Component<{currentProject: Proj
                         </button>
                         <br/>
                         <button className="btn btn-outline-dark btn-block mb-4"
-                                onClick={() => this.onDelete(this.props.currentProject.id)} type="button">Удалить
+                                onClick={() => this.onDelete(this.props.currentProject.id)} type="button">Удалить проект
                         </button>
                     </div>
                 </>}
-                <div className="projectPic">
-                    {this.props.currentProject.projectname && <img className="street" src={street}/>}
-                </div>
+                {/*<div className="projectPic">*/}
+                {/*    {this.props.currentProject.projectname && <img className="street" src={street}/>}*/}
+                {/*</div>*/}
             </div>
         )
     }

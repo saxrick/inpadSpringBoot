@@ -29,6 +29,14 @@ export default class DropDownUserListForUpdate extends React.Component<{onChange
             userList: [...this.state.userList, user]})
     }
 
+    userListWcomma(userList: UserDataType[]) {
+        return(
+            <ul className="userlistWcomma">Участники: {userList && userList.map((user) => <li
+                onClick={() => this.removeUserFromDisplay(user)} className="userinprWcomma"
+                key={user.id}>{user.username}</li>)}</ul>
+        )
+    }
+
     componentDidMount(){
         request(
             "GET",
@@ -52,17 +60,18 @@ export default class DropDownUserListForUpdate extends React.Component<{onChange
             <>
                 <div className="inpVal">
                     <div className="form-control" >
-                        {<ul className="userList">Участники: {this.state.displayedUserList && this.state.displayedUserList.map((user) =>
-                            <li onClick={() => this.removeUserFromDisplay(user)} className="userinpr"
-                                key={user.id}>{user.username}</li>)}</ul>}
+                        {this.userListWcomma(this.state.displayedUserList)}
+                        {/*{<ul className="userList">Участники: {this.state.displayedUserList && this.state.displayedUserList.map((user) =>*/}
+                        {/*    <li onClick={() => this.removeUserFromDisplay(user)} className="userinpr"*/}
+                        {/*        key={user.id}>{user.username}</li>)}</ul>}*/}
                         <div className="openDropDown" onClick={this.handleOpen.bind(this)}>
                             <div className="arr">
                                 &#9660;
                             </div>
                         </div>
                     </div>
-                    {this.state.isOpen && <div className="form-control">
-                        {<ul className="userList">{this.state.userList && this.state.userList.map((user) =>
+                    {this.state.isOpen && <div className="form-control1">
+                        {<ul className="userListDrop">{this.state.userList && this.state.userList.map((user) =>
                             <li onClick={() => this.addUserToDisplay(user)} className="userinpr"
                                 key={user.id}>{user.username}</li>)}</ul>}
                     </div>}

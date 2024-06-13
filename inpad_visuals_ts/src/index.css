@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&family=Roboto:wght@400;700&family=Titillium+Web&display=swap');
-@import "bootstrap";
+/*@import "bootstrap";*/
 
 
 * {
@@ -30,7 +30,13 @@ body img.tanya{
   width: 100%;
 }
 
-
+.mainPic{
+  height: 90%;
+  position: fixed;
+  right: 0;
+  top: 11%;
+  margin-right: 1%;
+}
 
 @keyframes userPic-spin {
   from {
@@ -113,6 +119,7 @@ section ul li.user {
 
 section ul.userList{
   display: table;
+  list-style: none;
 }
 
 
@@ -149,16 +156,15 @@ section ul.userList{
 }
 
 .street{
-  height: 90%;
-  position: fixed;
+
+
   right: 0;
-  top: 11%;
-  margin-right: 1%;
+
 }
 
 .createpr{
   width: 50%;
-  height: 50%;
+  height: 60%;
   position: absolute;
   top: 0;
   right: 0;
@@ -200,15 +206,44 @@ section ul.userList{
 
 .userinpr{
   cursor: pointer;
-  display: inline-block;
-  border: 1px solid #4d4d4d;
+  display: list-item;
   margin: 1px;
-  border-radius: 5px;
   background-color: #fff;
 }
 
 ul.userList{
-  padding: 0
+  padding: 0;
+  list-style: none;
+}
+
+.userlistWcomma{
+  padding: 0;
+  list-style: none;
+
+}
+
+.userinprWcomma{
+  cursor: pointer;
+  display: inline;
+  margin: 1px;
+  background-color: #fff;
+}
+
+.form-control1{
+  border: 1px solid #4d4d4d;
+  width: 50%;
+  background-color: white;
+  border-radius: 5px;
+  position: absolute;
+  right: 5%;
+  overflow-y: scroll;
+  height: 50%;
+}
+
+ul.userListDrop{
+  padding: 0;
+  list-style: none;
+
 }
 
 .openDropDown{
@@ -240,7 +275,7 @@ ul.userList{
   height: 90vh;
   width: 100%;
   position: fixed;
-  background-image: url(../public/createbcgrnd.png);
+  background-image: url(https://storage.yandexcloud.net/inpad-static/createbcgrnd.png);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: contain ;
@@ -308,4 +343,16 @@ ul.userList{
 .profileUserData {
   margin-top: 5%;
   margin-left: 5%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.houses{
+  width: 50%;
+}
+
+.errorMessage {
+  color: red;
 }

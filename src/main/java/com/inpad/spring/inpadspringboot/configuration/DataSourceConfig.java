@@ -27,21 +27,3 @@ public class DataSourceConfig {
     }
 }
 
-//public class DataSourceConfig {
-//    public static void main(String[] args) {
-//        String DB_URL     = "jdbc:postgresql://rc1a-u20bpg2idyn19l5i.mdb.yandexcloud.net:6432/inpaddb?targetServerType=master&ssl=true&sslmode=verify-full";
-//        String DB_USER    = "artem";
-//        String DB_PASS    = "Artem12378!!";
-//
-//        try {
-//            Class.forName("org.postgresql.Driver");
-//
-//            Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
-//            ResultSet q = conn.createStatement().executeQuery("SELECT version()");
-//            if(q.next()) {System.out.println(q.getString(1));}
-//
-//            conn.close();
-//        }
-//        catch(Exception ex) {ex.printStackTrace();}
-//    }
-//}

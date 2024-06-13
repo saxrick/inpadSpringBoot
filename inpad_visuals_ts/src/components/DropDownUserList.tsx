@@ -29,8 +29,16 @@ export default class DropDownUserList extends React.Component<{userData: UserDat
         userList: [...this.state.userList, user]})
     }
 
+    userListWcomma(userList: UserDataType[]) {
+        return(
+        <ul className="userlistWcomma">Участники: {userList && userList.map((user) => <li
+            onClick={() => this.removeUserFromDisplay(user)} className="userinprWcomma"
+            key={user.id}>{user.username}</li>)}</ul>
+        )
+    }
 
-    componentDidMount(){
+
+    componentDidMount() {
         request(
             "GET",
             `/users/all`,
@@ -48,22 +56,23 @@ export default class DropDownUserList extends React.Component<{userData: UserDat
         );
     }
 
-    render() {
+    render(){
         return(
             <>
                 <div className="inpVal">
-                    <div className="form-control" >
-                        {<ul className="userList">Участники: {this.state.displayedUserList && this.state.displayedUserList.map((user) =>
-                            <li onClick={() => this.removeUserFromDisplay(user)} className="userinpr"
-                                key={user.id}>{user.username}</li>)}</ul>}
+                    <div className="form-control">
+                        {this.userListWcomma(this.state.displayedUserList)}
+                        {/*{<ul className="userList">Участники: {this.state.displayedUserList && this.state.displayedUserList.map((user) =>*/}
+                        {/*    <li onClick={() => this.removeUserFromDisplay(user)} className="userinpr"*/}
+                        {/*        key={user.id}>{user.username}</li>)}</ul>}*/}
                         <div className="openDropDown" onClick={this.handleOpen.bind(this)}>
                             <div className="arr">
                                 &#9660;
                             </div>
                         </div>
                     </div>
-                    {this.state.isOpen && <div className="form-control">
-                        {<ul className="userList">{this.state.userList && this.state.userList.map((user) =>
+                    {this.state.isOpen && <div className="form-control1">
+                        {<ul className="userListDrop">{this.state.userList && this.state.userList.sort((a, b) => a.username > b.username ? 1 : -1).map((user) =>
                             <li onClick={() => this.addUserToDisplay(user)} className="userinpr"
                                 key={user.id}>{user.username}</li>)}</ul>}
                     </div>}

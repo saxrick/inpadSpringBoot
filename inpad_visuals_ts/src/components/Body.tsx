@@ -1,9 +1,18 @@
+import houses from "/street.jpg";
+
 export default function Body() {
     return (
-         <>
-
-         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-         </>
+        <>
+            <h1 className="text-center">СОЗДАДИМ СВОЙ ГОРОД ВМЕСТЕ</h1>
+            <div className="street">
+                <img className="houses" src={houses}/>
+            </div>
+            <p>1. Для того чтобы приступить к работе, нажмите создать новый проект , в открывшейся форме заполните
+                информационные поля и выберите других пользователей,<br/>
+                если вы хотите дать им доступ к проекту.</p>
+            <p>2.Откроется форма с 3d визуализацией карты, на которой вы можете свободно творить и создавать 3d
+                объекты</p>
+            <p>3. Если вы ранее уже создавали проекты, вы можете найти их в форме Список проектов</p>
+        </>
     )
 }

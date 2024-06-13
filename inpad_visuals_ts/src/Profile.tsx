@@ -18,7 +18,7 @@ export default class Profile extends React.Component<{userData: UserDataType, lo
     componentDidMount() {
         request(
             "GET",
-            `/users/${this.props.userData.id}`,
+            `http://localhost:8080/users/${this.props.userData.id}`,
             {}).then(
             (response) => {
                 this.setState({userData: response.data})
@@ -40,7 +40,7 @@ export default class Profile extends React.Component<{userData: UserDataType, lo
                     active={this.state.tab} onChange={(current: string) => this.setState({tab: current})}
                     buttonList={[
                         {id: 0, name: 'На главную', active: 'main', path: "logged"},
-                        {id: 1, name: 'Выход', active: "logout", path: "logout"}]}/>
+                        {id: 1, name: 'Выход', active: "logout", path: "logout"}]} pathList={undefined} profile={() => undefined}/>
                 <img className="userPicBig" src={nigga}/>
                 <div className="profileUserData">
                     <p>Имя пользователя: {this.state.userData.username}</p>

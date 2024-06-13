@@ -1,12 +1,12 @@
 import logo from '/Inpad_logo.png'
 import Button from "./Button/Button.tsx";
 import React from "react";
-import DropDownMenu from "./DropDownMenu.tsx";
 import {ButtonType} from "../types/ButtonType.tsx";
 import {PathType} from "../types/PathType.tsx";
+import nigga from "/nigga.jpg";
 
-export class Header extends React.Component<{active: string, buttonList: ButtonType[], logout: () => void, logged: () => void, onChange: (current: string) => void, pathList: PathType[], profile: () => void}>{
-    constructor(props: { active: string; buttonList: ButtonType[]; logout: () => void; logged: () => void; onChange: (current: string) => void; pathList: PathType[]; profile: () => void; }) {
+export class Header extends React.Component<{active: string, buttonList: ButtonType[], logout: () => void, logged: () => void, onChange: (current: string) => void, pathList: PathType[] | undefined, profile: () => void | undefined}>{
+    constructor(props: { active: string; buttonList: ButtonType[]; logout: () => void; logged: () => void; onChange: (current: string) => void; pathList: PathType[] | undefined; profile: () => void | undefined; }) {
         super(props);
     }
 
@@ -37,7 +37,8 @@ export class Header extends React.Component<{active: string, buttonList: ButtonT
                             >{button.name}
                             </Button>)}
 
-                    <DropDownMenu pathList={this.props.pathList}/>
+                    {/*{this.props.pathList && <DropDownMenu pathList={this.props.pathList}/>}*/}
+                    <img onClick={this.props.profile} className="userPic" src={nigga}/>
                 </div>
             </div>
         )

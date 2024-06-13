@@ -3,13 +3,15 @@ import React, {FormEvent} from "react";
 import {request, setAuthHeader} from "./components/axios_helper.ts";
 import LoginForm from "./components/LoginForm.tsx";
 import Profile from "./Profile.tsx";
+import {UserDataType} from "./types/UserDataType.tsx";
 
-export default class App extends React.Component<never, {componentToShow: string, userData: object}>{
-    constructor(props: never) {
+export default class App extends React.Component<object, {componentToShow: string, userData: UserDataType | null, message: string}>{
+    constructor(props: object) {
         super(props);
         this.state = {
             componentToShow: "login",
-            userData: {},
+            userData: null,
+            message: ""
         }
     }
 
@@ -39,9 +41,8 @@ export default class App extends React.Component<never, {componentToShow: string
                 this.setState({componentToShow: "logged", userData: response.data})
 
             }).catch((error) => {
-            console.log(error)
             setAuthHeader(null);
-            this.setState({componentToShow: "login"})
+            this.setState({componentToShow: "login", message: error.response.data.message})
 
         })
     }
@@ -64,9 +65,8 @@ export default class App extends React.Component<never, {componentToShow: string
 
             }).catch(
             (error) => {
-                console.log(error)
                 setAuthHeader(null);
-                this.setState({componentToShow: "login"})
+                this.setState({componentToShow: "login", message: error.response.data.message})
             }
         );
     };
@@ -95,9 +95,9 @@ export default class App extends React.Component<never, {componentToShow: string
     render() {
         return (
             <>
-                {this.state.componentToShow === "login" && <LoginForm onLogin={this.onLogin} onRegister={this.onRegister}/>}
-                {this.state.componentToShow === "logged" && <MainPage logout={this.logout} profile={this.profile} userData={this.state.userData} />}
-                {this.state.componentToShow === "profile" && <Profile logout={this.logout} logged={this.login} userData={this.state.userData}/>}
+                {this.state.componentToShow === "login" && <LoginForm onLogin={this.onLogin} onRegister={this.onRegister} message={this.state.message} onChange={(current: string) => this.setState({message: current})}/>}
+                {this.state.userData && this.state.componentToShow === "logged" && <MainPage logout={this.logout} profile={this.profile} userData={this.state.userData} />}
+                {this.state.userData && this.state.componentToShow === "profile" && <Profile logout={this.logout} logged={this.login} userData={this.state.userData}/>}
             </>
         )
     }

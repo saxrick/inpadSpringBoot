@@ -100,6 +100,13 @@ public class User {
         projects.add(project);
     }
 
+    public void addModelToUser(Model model) {
+        if(models == null){
+            models = new ArrayList<>();
+        }
+        models.add(model);
+    }
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_project"
@@ -107,6 +114,14 @@ public class User {
             , inverseJoinColumns = @JoinColumn(name = "project_id")
     )
     private List<Project> projects;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_model"
+            , joinColumns = @JoinColumn(name = "user_id")
+            , inverseJoinColumns = @JoinColumn(name = "model_id")
+    )
+    private List<Model> models;
 
 
     @Override

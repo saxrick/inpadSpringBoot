@@ -275,7 +275,6 @@ ul.userListDrop{
   height: 90vh;
   width: 100%;
   position: fixed;
-  background-image: url(https://storage.yandexcloud.net/inpad-static/createbcgrnd.png);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: contain ;
@@ -355,4 +354,200 @@ ul.userListDrop{
 
 .errorMessage {
   color: red;
+}
+
+#map {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.input-container {
+  position: absolute;
+  left: 6%;
+  top: 0;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  height: 100%;
+  background: white;
+  padding: 20px;
+  align-items: center;
+  gap: 20px;
+  padding-left: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.input-container_1 {
+  position: absolute;
+  bottom: 3%;
+  left: 55%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  border-radius: 10px;
+
+
+  background: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  padding: 10px;
+}
+
+.input-container_1 button {
+  width: 50px;
+  height: 50px;
+  border: none;
+
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-container_1 button:hover {
+  background-color: #fff;
+  border: 1px solid #4d4d4d;
+}
+
+/*button {*/
+/*  padding: 5px 5px;*/
+
+/*  width: 40px;*/
+/*  height: 40px;*/
+/*  border: none;*/
+/*  border-radius: 5px;*/
+/*  background-color: #007bff;*/
+/*  color: white;*/
+/*  cursor: pointer;*/
+/*  transition: background-color 0.3s;*/
+/*}*/
+
+/*button:hover {*/
+/*  background-color: #0056b3;*/
+/*}*/
+.slider {
+  width: 200px;
+}
+
+.Z{
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  padding: 5px;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+}
+
+.container {
+  display: flex;
+  gap: 10px;
+  text-align: center;
+}
+
+.buttonForm{
+  padding: 5px 5px;
+
+  width: 150px;
+  height: 40px;
+  border: 1px solid #111111;
+  border-radius: 5px;
+  background-color: #ffffff;
+  color: #111111;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.buttonForm:hover {
+  background-color: #111111;
+  color: #ffffff;
+}
+
+
+.title {
+  text-align: center;
+  font-weight: bold;
+  padding-top: 50px;
+}
+
+
+.subtitle {
+  text-align: center;
+  padding-bottom: 50px;
+}
+
+
+.content-block {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 50px;
+  border: 1px solid #808080;
+  border-radius: 8px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+
+.text {
+  font-size: 15px;
+  line-height: 1.5;
+  word-wrap: break-word;
+  max-width: calc(100% - 340px);
+  margin: 0;
+}
+
+
+.image {
+  width: 600px;
+  height: 300px;
+  margin-right: 20px;
+}
+
+.text_main{
+  font-weight: bold;
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+}
+
+.CloseButton {
+  position: absolute;
+  bottom: 3%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.container2 {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.input-container2 {
+  position: absolute;
+  left: 6%;
+  top: 10.5%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  height: 100%;
+  background: white;
+  padding: 20px;
+  align-items: center;
+  gap: 20px;
+  padding-left: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
 }

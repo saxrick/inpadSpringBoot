@@ -2,7 +2,7 @@ import React, {ChangeEvent, FormEvent} from "react";
 import DropDownUserList from "./DropDownUserList.tsx";
 import {request, setAuthHeader} from "./axios_helper.ts";
 import {UserDataType} from "../types/UserDataType.tsx";
-import ForgeViewer from "./ForgeViewer.tsx";
+import ProjectViewer from "./Viewer/ProjectViewer.tsx";
 
 export default class NewProjectForm extends React.Component<{userData: UserDataType}, {projectName: string, state: boolean, projectInfo: string, displayedUserList: UserDataType[], showButton: boolean, showForge: boolean, accesstoken: string, message: string}>{
     constructor(props: { userData: UserDataType; }) {
@@ -84,7 +84,7 @@ export default class NewProjectForm extends React.Component<{userData: UserDataT
         // console.log(this.state.accesstoken)
         return(
             <>
-            {/*<ForgeViewer urn={'dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6Y29uc29saWRhdGVkL3JtZV9hZHZhbmNlZF9zYW1wbGVfcHJvamVjdC5ydnQ'} accessToken={this.getAccessToken.bind(this)} />*/}
+            {/*<ProjectViewer urn={'dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6Y29uc29saWRhdGVkL3JtZV9hZHZhbmNlZF9zYW1wbGVfcHJvamVjdC5ydnQ'} accessToken={this.getAccessToken.bind(this)} />*/}
             <div className="projectFormTab">
                 <div className="createpr">
                     <form className="formInput" onSubmit={this.onSubmitProject}>
@@ -120,14 +120,7 @@ export default class NewProjectForm extends React.Component<{userData: UserDataT
                     </form>
                 </div>
             </div>
-                {this.state.showForge &&
-                    // <ForgeViewer
-                    // urn={'dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6Y29uc29saWRhdGVkL3JtZV9hZHZhbmNlZF9zYW1wbGVfcHJvamVjdC5ydnQ'}
-                    // accessToken={this.state.accesstoken}
-                    // loadAutodeskExtensions={["DrawToolExtension","TransformationExtension", "LoggerExtension","SummaryExtension"]}
-                    //                                   showDefaultToolbar={true} loadCustomExtensions={["GeoThreeExtension"]}/>
-                    <ForgeViewer/>
-                }
+                {this.state.showForge && <ProjectViewer onChange={(current: boolean) => this.setState({showForge: current})}/>}
             </>
         )
     }

@@ -20,7 +20,6 @@ import java.util.logging.Logger;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/projects")
-
 public class ProjectRESTController {
 
     Logger log = Logger.getLogger(ProjectRESTController.class.getName());

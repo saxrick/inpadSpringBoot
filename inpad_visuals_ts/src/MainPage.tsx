@@ -27,12 +27,12 @@ export default class MainPage extends React.Component<{userData: UserDataType, l
                         logout={this.props.logout}
                         profile={this.props.profile}
                         buttonList={[
-                            {id: 0, name: 'Помощь', active: 'help', path: ""},
-                            {id: 1, name: 'Главная', active: 'main', path: ""},
-                            {id: 2, name: 'Список проектов', active: 'open', path: ""},
-                            {id: 3, name: 'Создать новый', active: 'create', path: ""},
-                            {id: 4, name: 'Список моделей', active: 'modelRed', path: ""},
-                            {id: 5, name: 'Создать модель', active: 'modelCreate', path: ""}]}
+                            {id: 0, name: 'Главная', active: 'main', path: ""},
+                            {id: 1, name: 'Список проектов', active: 'open', path: ""},
+                            {id: 2, name: 'Создать новый', active: 'create', path: ""},
+                            {id: 3, name: 'Список моделей', active: 'modelRed', path: ""},
+                            {id: 4, name: 'Создать модель', active: 'modelCreate', path: ""},
+                            {id: 5, name: 'Помощь', active: 'help', path: ""},]}
                         pathList={[
                             {id: 1, pathname: "Профиль", path: this.props.profile},
                             {id: 2, pathname: "Выйти", path: this.props.logout}]}

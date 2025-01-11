@@ -19,8 +19,6 @@ export default class NewProjectForm extends React.Component<{userData: UserDataT
         }
     }
 
-
-
     onCreate = (event: FormEvent<HTMLFormElement>, projectName: string, state: boolean, projectInfo: string, userList: UserDataType[]) => {
         event.preventDefault();
         request(
@@ -85,42 +83,51 @@ export default class NewProjectForm extends React.Component<{userData: UserDataT
         return(
             <>
             {/*<ProjectViewer urn={'dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6Y29uc29saWRhdGVkL3JtZV9hZHZhbmNlZF9zYW1wbGVfcHJvamVjdC5ydnQ'} accessToken={this.getAccessToken.bind(this)} />*/}
-            <div className="projectFormTab">
-                <div className="createpr">
-                    <form className="formInput" onSubmit={this.onSubmitProject}>
-                        <div className="inpVal">
-                            <input type="text" id="projectName" name="projectName" className="form-control"
-                                   placeholder="Название" onChange={this.onChangeProjectNameHandler}/>
-                        </div>
-                        <div className="inpVal">
-                            <input type="text" id="projectInfo" name="projectInfo" className="form-control"
-                                   placeholder="Описание проекта" onChange={this.onChangeProjectInfoHandler}/>
-                        </div>
-                        <div className="inpVal">
-                            <input type="text" id="projectInfo" name="projectInfo" className="form-control"
-                                   placeholder="Координаты"/>
-                        </div>
-                        <DropDownUserList userData={this.props.userData}
-                                          onChange={(current: UserDataType[]) => this.setState({
-                                              displayedUserList: current,
-                                              showButton: !this.state.showButton
-                                          })}/>
+                <div className="projectFormTab">
+                    <div className="projectText">
+                        <h1>Новый проект</h1>
+                        <h3>Создавайте, как вам нравится, мы только за!</h3>
+                    </div>
+                    <div className="createpr">
+                        <form className="formInput" onSubmit={this.onSubmitProject}>
+                            <div className="inpVal">
+                                <input type="text" id="projectName" name="projectName" className="form-control"
+                                       placeholder="Название" onChange={this.onChangeProjectNameHandler}/>
+                            </div>
+                            <div className="inpVal">
+                                <input type="text" id="projectInfo" name="projectInfo" className="form-control"
+                                       placeholder="Описание проекта" onChange={this.onChangeProjectInfoHandler}/>
+                            </div>
+                            <div className="inpVal">
+                                <input type="text" id="projectInfo" name="projectInfo" className="form-control"
+                                       placeholder="Координаты"/>
+                            </div>
+                            <DropDownUserList userData={this.props.userData}
+                                              onChange={(current: UserDataType[]) => this.setState({
+                                                  displayedUserList: current,
+                                                  showButton: !this.state.showButton
+                                              })}/>
 
-                        {(this.state.projectName !== "" && this.state.projectInfo !== "") && <div className="middle-button">
-                            {this.state.showButton && <button type="submit" onClick={this.onClickHandler.bind(this)}
-                                                              className="btn btn-outline-dark btn-block mb-4">Создать</button>}
-                        </div>}
-                        {(this.state.projectName === "" || this.state.projectInfo === "") && <div className="middle-button">
-                            {this.state.showButton && <button type="button" onClick={this.onClickHandler.bind(this)}
-                                                              className="btn btn-outline-dark btn-block mb-4">Создать</button>}
-                        </div>}
-                        <div className="errorMessage">
-                            {this.state.message && <p>{this.state.message}</p>}
-                        </div>
-                    </form>
+                            {(this.state.projectName !== "" && this.state.projectInfo !== "") &&
+                                <div className="middle-button">
+                                    {this.state.showButton &&
+                                        <button type="submit" onClick={this.onClickHandler.bind(this)}
+                                                className="btn btn-outline-dark btn-block mb-4">Создать</button>}
+                                </div>}
+                            {(this.state.projectName === "" || this.state.projectInfo === "") &&
+                                <div className="middle-button">
+                                    {this.state.showButton &&
+                                        <button type="button" onClick={this.onClickHandler.bind(this)}
+                                                className="btn btn-outline-dark btn-block mb-4">Создать</button>}
+                                </div>}
+                            <div className="errorMessage">
+                                {this.state.message && <p>{this.state.message}</p>}
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
-                {this.state.showForge && <ProjectViewer onChange={(current: boolean) => this.setState({showForge: current})}/>}
+                {this.state.showForge &&
+                    <ProjectViewer onChange={(current: boolean) => this.setState({showForge: current})}/>}
             </>
         )
     }

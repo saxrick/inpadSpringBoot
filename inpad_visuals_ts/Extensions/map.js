@@ -52,7 +52,7 @@ function saveAsGLTF() {
             var blob = new Blob([output], { type: 'application/json' });
             var link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
-            link.download = 'scene.gltf';
+            link.download = 'scene1.gltf';
             link.click();
         },
         { binary: false }

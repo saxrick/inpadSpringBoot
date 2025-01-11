@@ -24,10 +24,16 @@ class ModelMaker extends React.Component<{onChange:(current: boolean) => void}> 
                     <div id="myCanvas"></div>
                 </div>
                 <div className="input-container2">
-
-
-                <button className='buttonForm' id="saveBtn">Сохранить</button>
-                <button className='buttonForm' type="button" id="close" onClick={this.handleClose.bind(this)}>Закрыть</button>
+                    <button className='buttonForm' id="drawModeButton">Режим рисования</button>
+                    <button className='buttonForm' id="viewModeButton">Режим камеры</button>
+                    <button className='buttonForm' id="fillShapeButton">Закрасить</button>
+                    <button className='buttonForm' id="make3DButton">3D</button>
+                    <button className='buttonForm' id="saveModelButton">Сохранить</button>
+                    <div className="buttonFormClose">
+                        <button className='buttonForm' type="button"
+                                onClick={this.handleClose.bind(this)}>Закрыть
+                        </button>
+                    </div>
 
 
                 </div>

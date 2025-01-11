@@ -29,7 +29,7 @@ export default class ModelRedactor extends React.Component<{userData: UserDataTy
             }).catch(
             (error) => {
                 if (error.response.status === 401) {
-
+                    setAuthHeader(null);
                 }
             }
         )

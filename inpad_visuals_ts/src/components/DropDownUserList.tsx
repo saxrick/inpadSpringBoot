@@ -67,7 +67,7 @@ export default class DropDownUserList extends React.Component<{userData: UserDat
                         {/*        key={user.id}>{user.username}</li>)}</ul>}*/}
                         <div className="openDropDown" onClick={this.handleOpen.bind(this)}>
                             <div className="arr">
-                                &#9660;
+                                &#8250;
                             </div>
                         </div>
                     </div>

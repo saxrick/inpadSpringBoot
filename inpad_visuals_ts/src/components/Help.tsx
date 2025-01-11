@@ -16,7 +16,7 @@ export default function Help() {
                 </div>
                 <div className="inpVal">
                     <input type="text" id="modelInfo" name="modelInfo" className="form-control"
-                           placeholder="Вопрос я хуесос"
+                           placeholder="Напишите ваш вопрос"
                     />
                 </div>
                 <div className="middle-button">

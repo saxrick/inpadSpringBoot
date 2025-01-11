@@ -37,7 +37,7 @@
 -- 	FOREIGN KEY (project_id) REFERENCES projects(id)
 -- );
 
-CREATE TABLE user_models (
+CREATE TABLE user_model (
 	user_id int NOT NULL,
 	model_id int NOT NULL,
 	PRIMARY KEY (user_id, model_id),

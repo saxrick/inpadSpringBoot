@@ -101,7 +101,12 @@ export default class LoginForm extends React.Component<{onLogin: (event: FormEve
     render() {
         return (
             <div className="row justify-content-center">
+                <div className="login-text">
+                    <h1>Добро пожаловать!</h1>
+                </div>
+
                 <div className="col-4">
+
                     <ul className="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
                         <li className="nav-item" role="presentation">
                             <button className={classNames("nav-link", this.state.active === "login" ? "active" : "")} id="tab-login"
@@ -137,11 +142,11 @@ export default class LoginForm extends React.Component<{onLogin: (event: FormEve
 
                                 {(this.state.login !== "" && this.state.password !== "") && <div className="middle-button">
                                     <button type="submit" onClick={this.onClickHandler.bind(this)}
-                                                                      className="btn btn-outline-dark btn-block mb-4">Войти</button>
+                                            className="btn btn-outline-dark btn-block mb-4">Войти</button>
                                 </div>}
                                 {(this.state.login === "" || this.state.password === "") && <div className="middle-button">
                                     <button type="button" onClick={this.onClickHandler.bind(this)}
-                                                                      className="btn btn-outline-dark btn-block mb-4">Войти</button>
+                                            className="btn btn-outline-dark btn-block mb-4">Войти</button>
                                 </div>}
 
 

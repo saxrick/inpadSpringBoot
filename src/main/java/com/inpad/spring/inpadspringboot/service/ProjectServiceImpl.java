@@ -3,7 +3,7 @@ package com.inpad.spring.inpadspringboot.service;
 import com.inpad.spring.inpadspringboot.dto.ProjectDTO;
 import com.inpad.spring.inpadspringboot.dto.SignUpProjectDTO;
 import com.inpad.spring.inpadspringboot.entity.Project;
-import com.inpad.spring.inpadspringboot.entity.User;
+
 import com.inpad.spring.inpadspringboot.mapper.ProjectMapper;
 import com.inpad.spring.inpadspringboot.repositories.ProjectRepository;
 import lombok.RequiredArgsConstructor;
@@ -39,6 +39,7 @@ public class ProjectServiceImpl implements ProjectService{
         Project updatedProject = projectRepository.getReferenceById(id);
         updatedProject.setProjectname(projectDTO.getProjectName());
         updatedProject.setProjectinfo(projectDTO.getProjectInfo());
+        updatedProject.setProjectdata(projectDTO.getProjectData());
         updatedProject.setUsers(projectDTO.getUserList());
         projectRepository.save(updatedProject);
     }

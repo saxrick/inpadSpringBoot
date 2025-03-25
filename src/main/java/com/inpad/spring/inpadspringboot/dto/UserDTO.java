@@ -102,6 +102,7 @@ public class UserDTO {
             projectDTO.setProjectname(project.getProjectname());
             projectDTO.setState(project.isState());
             projectDTO.setProjectinfo(project.getProjectinfo());
+            projectDTO.setProjectdata(project.getProjectdata());
             projectList.add(projectDTO);
         }
         userDTO.setProjectList(projectList);

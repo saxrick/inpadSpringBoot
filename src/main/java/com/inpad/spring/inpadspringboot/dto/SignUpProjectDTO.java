@@ -5,8 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import java.util.List;
+import java.util.Map;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,6 +18,7 @@ import java.util.List;
 public class SignUpProjectDTO {
     private String projectName;
     private String projectInfo;
+    private JSONObject projectData;
     private boolean state;
     private List<User> userList;
 }

@@ -18,6 +18,7 @@
 -- 	projectname varchar(255),
 -- 	state bool,
 --     projectinfo varchar(255),
+--  projectdata json,
 -- 	PRIMARY KEY (id)
 -- );
 --

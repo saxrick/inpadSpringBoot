@@ -7,11 +7,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,9 +26,8 @@ public class ProjectDTO {
     private int id;
     private String projectname;
     private boolean state;
-
     private String projectinfo;
-
+    private JSONObject projectdata;
     private List<UserDTO> userList;
 
 
@@ -37,6 +39,7 @@ public class ProjectDTO {
         projectDTO.setProjectname(project.getProjectname());
         projectDTO.setState(project.isState());
         projectDTO.setProjectinfo(project.getProjectinfo());
+        projectDTO.setProjectdata(project.getProjectdata());
         for (User user : project.getUsers()){
             UserDTO userDTO = new UserDTO();
             userDTO.setId(user.getId());
@@ -101,5 +104,13 @@ public class ProjectDTO {
 
     public void setProjectinfo(String projectinfo) {
         this.projectinfo = projectinfo;
+    }
+
+    public JSONObject getProjectdata() {
+        return projectdata;
+    }
+
+    public void setProjectdata(JSONObject projectdata) {
+        this.projectdata = projectdata;
     }
 }

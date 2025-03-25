@@ -24,6 +24,7 @@ public class ProjectMapperImpl implements ProjectMapper{
         Project.ProjectBuilder project = Project.builder();
         project.projectname( projectDTO.getProjectName() );
         project.projectinfo( projectDTO.getProjectInfo() );
+        project.projectdata( projectDTO.getProjectData() );
         project.state( projectDTO.isState() );
         project.users( projectDTO.getUserList() );
 

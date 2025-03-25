@@ -1,20 +1,24 @@
 package com.inpad.spring.inpadspringboot.entity;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
-@AllArgsConstructor
-@NoArgsConstructor
+import com.inpad.spring.inpadspringboot.converter.JsonToMapConverter;
+import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+
+import java.io.Serializable;
+import java.util.*;
+
 @Builder
 @Data
 @Entity
 @Table(name = "projects")
-public class Project {
+
+public class Project implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +31,12 @@ public class Project {
 
     @Column(name = "projectinfo")
     private String projectinfo;
+
+    @Lob
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "projectdata", columnDefinition = "json", nullable = true)
+    @Convert(attributeName = "data", converter = JsonToMapConverter.class)
+    private JSONObject projectdata;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -43,6 +53,18 @@ public class Project {
         users.add(user);
     }
 
+    public Project(int id, String projectname, boolean state, String projectinfo, JSONObject projectdata, List<User> users) {
+        this.id = id;
+        this.projectname = projectname;
+        this.state = state;
+        this.projectinfo = projectinfo;
+        this.projectdata = projectdata;
+        this.users = users;
+    }
+
+    public Project() {
+    }
+
     @Override
     public String toString() {
         return "Project{" +
@@ -50,24 +72,9 @@ public class Project {
                 ", projectname='" + projectname + '\'' +
                 ", state=" + state +
                 ", projectinfo='" + projectinfo + '\'' +
+                ", projectdata=" + projectdata +
                 ", users=" + users +
                 '}';
-    }
-
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
-
-
-    public Project(String projectname, boolean state, String projectinfo, List<User> users) {
-        this.projectname = projectname;
-        this.state = state;
-        this.projectinfo = projectinfo;
-        this.users = users;
     }
 
     public int getId() {
@@ -102,5 +109,32 @@ public class Project {
         this.projectinfo = projectinfo;
     }
 
+    public JSONObject getProjectdata() {
+        return projectdata;
+    }
+
+    public void setProjectdata(JSONObject projectdata) {
+        this.projectdata = projectdata;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Project project)) return false;
+        return id == project.id && state == project.state && Objects.equals(projectname, project.projectname) && Objects.equals(projectinfo, project.projectinfo) && Objects.equals(projectdata, project.projectdata) && Objects.equals(users, project.users);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, projectname, state, projectinfo, projectdata, users);
+    }
 }
 

@@ -33,6 +33,8 @@ public class ProjectDTO {
     private Date dtCreation;
     private Date dtUpdate;
     private String startCoordinates;
+    private String insideCoordinates;
+    private String outsideCoordinates;
 
 
     @Transactional
@@ -47,6 +49,8 @@ public class ProjectDTO {
         projectDTO.setDtCreation(project.getDtCreation());
         projectDTO.setDtUpdate(project.getDtUpdate());
         projectDTO.setStartCoordinates(project.getStartCoordinates());
+        projectDTO.setInsideCoordinates(project.getInsideCoordinates());
+        projectDTO.setOutsideCoordinates(project.getOutsideCoordinates());
 
         for (User user : project.getUsers()){
             UserDTO userDTO = new UserDTO();
@@ -70,7 +74,6 @@ public class ProjectDTO {
         }
         return projectDTOList;
     }
-
 
 
 
@@ -144,5 +147,21 @@ public class ProjectDTO {
 
     public void setDtUpdate(Date dtUpdate) {
         this.dtUpdate = dtUpdate;
+    }
+
+    public String getInsideCoordinates() {
+        return insideCoordinates;
+    }
+
+    public void setInsideCoordinates(String insideCoordinates) {
+        this.insideCoordinates = insideCoordinates;
+    }
+
+    public String getOutsideCoordinates() {
+        return outsideCoordinates;
+    }
+
+    public void setOutsideCoordinates(String outsideCoordinates) {
+        this.outsideCoordinates = outsideCoordinates;
     }
 }

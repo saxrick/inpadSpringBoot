@@ -23,4 +23,8 @@ public class SignUpProjectDTO {
     private boolean state;
     private List<User> userList;
     private Date dtCreation;
+    private Date dtUpdate;
+    private String startCoordinates;
+    private String insideCoordinates;
+    private String outsideCoordinates;
 }

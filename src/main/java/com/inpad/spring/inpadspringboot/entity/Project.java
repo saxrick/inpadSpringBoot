@@ -47,6 +47,12 @@ public class Project implements Serializable{
     @Column(name = "start_coordinates")
     private String startCoordinates;
 
+    @Column(name = "inside_coordinates")
+    private String insideCoordinates;
+
+    @Column(name = "outside_coordinates")
+    private String outsideCoordinates;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_project"
@@ -64,7 +70,7 @@ public class Project implements Serializable{
         users.add(user);
     }
 
-    public Project(int id, String projectname, boolean state, String projectinfo, JSONObject projectdata, Date dtCreation, Date dtUpdate, String startCoordinates, List<User> users) {
+    public Project(int id, String projectname, boolean state, String projectinfo, JSONObject projectdata, Date dtCreation, Date dtUpdate, String startCoordinates, String insideCoordinates, String outsideCoordinates, List<User> users) {
         this.id = id;
         this.projectname = projectname;
         this.state = state;
@@ -73,6 +79,8 @@ public class Project implements Serializable{
         this.dtCreation = dtCreation;
         this.dtUpdate = dtUpdate;
         this.startCoordinates = startCoordinates;
+        this.insideCoordinates = insideCoordinates;
+        this.outsideCoordinates = outsideCoordinates;
         this.users = users;
     }
 
@@ -90,6 +98,8 @@ public class Project implements Serializable{
                 ", dtCreation=" + dtCreation +
                 ", dtUpdate=" + dtUpdate +
                 ", startCoordinates='" + startCoordinates + '\'' +
+                ", insideCoordinates='" + insideCoordinates + '\'' +
+                ", outsideCoordinates='" + outsideCoordinates + '\'' +
                 ", users=" + users +
                 '}';
     }
@@ -164,6 +174,22 @@ public class Project implements Serializable{
 
     public void setDtUpdate(Date dtUpdate) {
         this.dtUpdate = dtUpdate;
+    }
+
+    public String getInsideCoordinates() {
+        return insideCoordinates;
+    }
+
+    public void setInsideCoordinates(String insideCoordinates) {
+        this.insideCoordinates = insideCoordinates;
+    }
+
+    public String getOutsideCoordinates() {
+        return outsideCoordinates;
+    }
+
+    public void setOutsideCoordinates(String outsideCoordinates) {
+        this.outsideCoordinates = outsideCoordinates;
     }
 
     @Override

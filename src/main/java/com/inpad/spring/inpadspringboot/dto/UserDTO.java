@@ -103,6 +103,9 @@ public class UserDTO {
             projectDTO.setState(project.isState());
             projectDTO.setProjectinfo(project.getProjectinfo());
             projectDTO.setProjectdata(project.getProjectdata());
+            projectDTO.setStartCoordinates(project.getStartCoordinates());
+            projectDTO.setInsideCoordinates(project.getInsideCoordinates());
+            projectDTO.setOutsideCoordinates(project.getOutsideCoordinates());
             projectList.add(projectDTO);
         }
         userDTO.setProjectList(projectList);

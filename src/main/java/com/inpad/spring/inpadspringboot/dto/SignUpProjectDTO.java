@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -21,4 +22,5 @@ public class SignUpProjectDTO {
     private JSONObject projectData;
     private boolean state;
     private List<User> userList;
+    private Date dtCreation;
 }

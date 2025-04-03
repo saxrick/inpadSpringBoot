@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -29,6 +30,9 @@ public class ProjectDTO {
     private String projectinfo;
     private JSONObject projectdata;
     private List<UserDTO> userList;
+    private Date dtCreation;
+    private Date dtUpdate;
+    private String startCoordinates;
 
 
     @Transactional
@@ -40,6 +44,10 @@ public class ProjectDTO {
         projectDTO.setState(project.isState());
         projectDTO.setProjectinfo(project.getProjectinfo());
         projectDTO.setProjectdata(project.getProjectdata());
+        projectDTO.setDtCreation(project.getDtCreation());
+        projectDTO.setDtUpdate(project.getDtUpdate());
+        projectDTO.setStartCoordinates(project.getStartCoordinates());
+
         for (User user : project.getUsers()){
             UserDTO userDTO = new UserDTO();
             userDTO.setId(user.getId());
@@ -112,5 +120,29 @@ public class ProjectDTO {
 
     public void setProjectdata(JSONObject projectdata) {
         this.projectdata = projectdata;
+    }
+
+    public Date getDtCreation() {
+        return dtCreation;
+    }
+
+    public Date getDtUpdate() {
+        return dtUpdate;
+    }
+
+    public String getStartCoordinates() {
+        return startCoordinates;
+    }
+
+    public void setStartCoordinates(String startCoordinates) {
+        this.startCoordinates = startCoordinates;
+    }
+
+    public void setDtCreation(Date dtCreation) {
+        this.dtCreation = dtCreation;
+    }
+
+    public void setDtUpdate(Date dtUpdate) {
+        this.dtUpdate = dtUpdate;
     }
 }

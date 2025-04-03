@@ -38,6 +38,15 @@ public class Project implements Serializable{
     @Convert(attributeName = "data", converter = JsonToMapConverter.class)
     private JSONObject projectdata;
 
+    @Column(name = "dt_creation")
+    private Date dtCreation;
+
+    @Column(name = "dt_update")
+    private Date dtUpdate;
+
+    @Column(name = "start_coordinates")
+    private String startCoordinates;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_project"
@@ -46,6 +55,8 @@ public class Project implements Serializable{
     )
     private List<User> users;
 
+    public enum UserToProjectType {LEAVE, CHAT, JOIN}
+
     public void addUserToProject(User user) {
         if(users == null){
             users = new ArrayList<>();
@@ -53,12 +64,15 @@ public class Project implements Serializable{
         users.add(user);
     }
 
-    public Project(int id, String projectname, boolean state, String projectinfo, JSONObject projectdata, List<User> users) {
+    public Project(int id, String projectname, boolean state, String projectinfo, JSONObject projectdata, Date dtCreation, Date dtUpdate, String startCoordinates, List<User> users) {
         this.id = id;
         this.projectname = projectname;
         this.state = state;
         this.projectinfo = projectinfo;
         this.projectdata = projectdata;
+        this.dtCreation = dtCreation;
+        this.dtUpdate = dtUpdate;
+        this.startCoordinates = startCoordinates;
         this.users = users;
     }
 
@@ -73,6 +87,9 @@ public class Project implements Serializable{
                 ", state=" + state +
                 ", projectinfo='" + projectinfo + '\'' +
                 ", projectdata=" + projectdata +
+                ", dtCreation=" + dtCreation +
+                ", dtUpdate=" + dtUpdate +
+                ", startCoordinates='" + startCoordinates + '\'' +
                 ", users=" + users +
                 '}';
     }
@@ -123,6 +140,30 @@ public class Project implements Serializable{
 
     public void setUsers(List<User> users) {
         this.users = users;
+    }
+
+    public Date getDtCreation() {
+        return dtCreation;
+    }
+
+    public Date getDtUpdate() {
+        return dtUpdate;
+    }
+
+    public String getStartCoordinates() {
+        return startCoordinates;
+    }
+
+    public void setStartCoordinates(String startCoordinates) {
+        this.startCoordinates = startCoordinates;
+    }
+
+    public void setDtCreation(Date dtCreation) {
+        this.dtCreation = dtCreation;
+    }
+
+    public void setDtUpdate(Date dtUpdate) {
+        this.dtUpdate = dtUpdate;
     }
 
     @Override

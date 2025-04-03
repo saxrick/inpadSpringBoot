@@ -19,6 +19,9 @@
 -- 	state bool,
 --     projectinfo varchar(255),
 --  projectdata json,
+-- dt_creation date,
+-- dt_update date,
+-- start_coordinates varchar,
 -- 	PRIMARY KEY (id)
 -- );
 --

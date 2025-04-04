@@ -56,9 +56,9 @@ public class ProjectDTO {
             UserDTO userDTO = new UserDTO();
             userDTO.setId(user.getId());
             userDTO.setUsername(user.getUsername());
-            userDTO.setState(user.isState());
-            userDTO.setLogin(user.getLogin());
-            userDTO.setRole(user.getRole());
+//            userDTO.setState(user.isState());
+//            userDTO.setLogin(user.getLogin());
+//            userDTO.setRole(user.getRole());
             userList.add(userDTO);
         }
         projectDTO.setUserList(userList);

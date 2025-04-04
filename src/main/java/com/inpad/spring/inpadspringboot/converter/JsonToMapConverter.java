@@ -40,13 +40,14 @@ public class JsonToMapConverter implements AttributeConverter<JSONObject, String
         try
         {
             Object temp = JSONValue.parse(data);
-            System.out.println(data);
-            System.out.println(temp);
+//            System.out.println(data);
+//            System.out.println(temp);
             obj = (JSONObject) temp ;
         }
         catch (final Exception e)
         {
-//            log.info("JSON reading error" + e);
+            log.info("JSON reading error" + e);
+            obj = null;
         }
 
         return obj;

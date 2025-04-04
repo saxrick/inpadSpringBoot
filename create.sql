@@ -14,14 +14,16 @@
 -- );
 --
 -- CREATE TABLE projects (
--- 	id bigint NOT NULL GENERATED ALWAYS AS IDENTITY,
--- 	projectname varchar(255),
--- 	state bool,
---     projectinfo varchar(255),
---  projectdata json,
+-- id bigint NOT NULL GENERATED ALWAYS AS IDENTITY,
+-- projectname varchar(255),
+-- state bool,
+-- projectinfo varchar(255),
+-- projectdata json,
 -- dt_creation date,
 -- dt_update date,
 -- start_coordinates varchar,
+-- inside_coordinates varchar,
+-- outside_coordinates varchar,
 -- 	PRIMARY KEY (id)
 -- );
 --

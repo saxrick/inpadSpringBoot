@@ -43,6 +43,11 @@ public class ProjectServiceImpl implements ProjectService{
         updatedProject.setProjectinfo(projectDTO.getProjectInfo());
         updatedProject.setProjectdata(projectDTO.getProjectData());
         updatedProject.setUsers(projectDTO.getUserList());
+        updatedProject.setDtUpdate(projectDTO.getDtUpdate());
+        updatedProject.setDtCreation(projectDTO.getDtCreation());
+        updatedProject.setStartCoordinates(projectDTO.getStartCoordinates());
+        updatedProject.setInsideCoordinates(projectDTO.getInsideCoordinates());
+        updatedProject.setOutsideCoordinates(projectDTO.getOutsideCoordinates());
         projectRepository.save(updatedProject);
 
     }

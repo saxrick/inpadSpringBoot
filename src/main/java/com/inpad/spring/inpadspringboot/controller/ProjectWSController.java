@@ -1,10 +1,7 @@
 package com.inpad.spring.inpadspringboot.controller;
 
-import com.inpad.spring.inpadspringboot.dto.ProjectDTO;
-import com.inpad.spring.inpadspringboot.entity.Model;
 import com.inpad.spring.inpadspringboot.entity.Project;
 import com.inpad.spring.inpadspringboot.repositories.ProjectRepository;
-import com.inpad.spring.inpadspringboot.service.ModelService;
 import com.inpad.spring.inpadspringboot.service.ProjectService;
 import lombok.RequiredArgsConstructor;
 import org.json.simple.JSONObject;
@@ -23,9 +20,6 @@ public class ProjectWSController {
 
     @Autowired
     ProjectService projectService;
-
-    @Autowired
-    ModelService modelService;
 
     private final ProjectRepository projectRepository;
 

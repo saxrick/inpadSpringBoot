@@ -22,11 +22,13 @@ public class JsonToMapConverter implements AttributeConverter<JSONObject, String
         String data = null;
         try
         {
+            System.out.println("aboba" + obj.get("polygonInfo").getClass());
             data = obj.toString();
+//            System.out.println(data);
         }
         catch (final Exception e)
         {
-            log.info("JSON writing error");
+//            log.info("JSON writing error");
         }
 
         return data;
@@ -46,7 +48,7 @@ public class JsonToMapConverter implements AttributeConverter<JSONObject, String
         }
         catch (final Exception e)
         {
-            log.info("JSON reading error" + e);
+//            log.info("JSON reading error" + e);
             obj = null;
         }
 

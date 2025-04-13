@@ -61,6 +61,14 @@ public class Project implements Serializable{
     )
     private List<User> users;
 
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "project_id")
+    private List<CoefficientFactual> coefficientFactualList;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "project_id")
+    private List<CoefficientNormative> coefficientNormativeList;
+
     public enum UserToProjectType {LEAVE, CHAT, JOIN}
 
     public void addUserToProject(User user) {
@@ -70,7 +78,10 @@ public class Project implements Serializable{
         users.add(user);
     }
 
-    public Project(int id, String projectname, boolean state, String projectinfo, JSONObject projectdata, Date dtCreation, Date dtUpdate, String startCoordinates, String insideCoordinates, String outsideCoordinates, List<User> users) {
+    public Project() {
+    }
+
+    public Project(int id, String projectname, boolean state, String projectinfo, JSONObject projectdata, Date dtCreation, Date dtUpdate, String startCoordinates, String insideCoordinates, String outsideCoordinates, List<User> users, List<CoefficientFactual> coefficientFactualList, List<CoefficientNormative> coefficientNormativeList) {
         this.id = id;
         this.projectname = projectname;
         this.state = state;
@@ -82,26 +93,8 @@ public class Project implements Serializable{
         this.insideCoordinates = insideCoordinates;
         this.outsideCoordinates = outsideCoordinates;
         this.users = users;
-    }
-
-    public Project() {
-    }
-
-    @Override
-    public String toString() {
-        return "Project{" +
-                "id=" + id +
-                ", projectname='" + projectname + '\'' +
-                ", state=" + state +
-                ", projectinfo='" + projectinfo + '\'' +
-                ", projectdata=" + projectdata +
-                ", dtCreation=" + dtCreation +
-                ", dtUpdate=" + dtUpdate +
-                ", startCoordinates='" + startCoordinates + '\'' +
-                ", insideCoordinates='" + insideCoordinates + '\'' +
-                ", outsideCoordinates='" + outsideCoordinates + '\'' +
-                ", users=" + users +
-                '}';
+        this.coefficientFactualList = coefficientFactualList;
+        this.coefficientNormativeList = coefficientNormativeList;
     }
 
     public int getId() {
@@ -190,6 +183,22 @@ public class Project implements Serializable{
 
     public void setOutsideCoordinates(String outsideCoordinates) {
         this.outsideCoordinates = outsideCoordinates;
+    }
+
+    public List<CoefficientFactual> getCoefficientFactualList() {
+        return coefficientFactualList;
+    }
+
+    public void setCoefficientFactualList(List<CoefficientFactual> coefficientFactualList) {
+        this.coefficientFactualList = coefficientFactualList;
+    }
+
+    public List<CoefficientNormative> getCoefficientNormativeList() {
+        return coefficientNormativeList;
+    }
+
+    public void setCoefficientNormativeList(List<CoefficientNormative> coefficientNormativeList) {
+        this.coefficientNormativeList = coefficientNormativeList;
     }
 
     @Override

@@ -103,6 +103,8 @@ public class UserDTO {
             projectDTO.setStartCoordinates(project.getStartCoordinates());
             projectDTO.setInsideCoordinates(project.getInsideCoordinates());
             projectDTO.setOutsideCoordinates(project.getOutsideCoordinates());
+            projectDTO.setCoefficientNormativeList(project.getCoefficientNormativeList());
+            projectDTO.setCoefficientFactualList(project.getCoefficientFactualList());
             projectList.add(projectDTO);
         }
         userDTO.setProjectList(projectList);

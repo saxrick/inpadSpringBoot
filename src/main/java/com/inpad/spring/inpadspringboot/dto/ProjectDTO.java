@@ -1,5 +1,7 @@
 package com.inpad.spring.inpadspringboot.dto;
 
+import com.inpad.spring.inpadspringboot.entity.CoefficientFactual;
+import com.inpad.spring.inpadspringboot.entity.CoefficientNormative;
 import com.inpad.spring.inpadspringboot.entity.Project;
 import com.inpad.spring.inpadspringboot.entity.User;
 
@@ -35,6 +37,8 @@ public class ProjectDTO {
     private String startCoordinates;
     private String insideCoordinates;
     private String outsideCoordinates;
+    private List<CoefficientFactual> coefficientFactualList;
+    private List<CoefficientNormative> coefficientNormativeList;
 
 
     @Transactional
@@ -51,6 +55,8 @@ public class ProjectDTO {
         projectDTO.setStartCoordinates(project.getStartCoordinates());
         projectDTO.setInsideCoordinates(project.getInsideCoordinates());
         projectDTO.setOutsideCoordinates(project.getOutsideCoordinates());
+        projectDTO.setCoefficientFactualList(project.getCoefficientFactualList());
+        projectDTO.setCoefficientNormativeList(project.getCoefficientNormativeList());
         for (User user : project.getUsers()){
             UserDTO userDTO = new UserDTO();
             userDTO.setId(user.getId());
@@ -162,5 +168,21 @@ public class ProjectDTO {
 
     public void setOutsideCoordinates(String outsideCoordinates) {
         this.outsideCoordinates = outsideCoordinates;
+    }
+
+    public List<CoefficientFactual> getCoefficientFactualList() {
+        return coefficientFactualList;
+    }
+
+    public void setCoefficientFactualList(List<CoefficientFactual> coefficientFactualList) {
+        this.coefficientFactualList = coefficientFactualList;
+    }
+
+    public List<CoefficientNormative> getCoefficientNormativeList() {
+        return coefficientNormativeList;
+    }
+
+    public void setCoefficientNormativeList(List<CoefficientNormative> coefficientNormativeList) {
+        this.coefficientNormativeList = coefficientNormativeList;
     }
 }

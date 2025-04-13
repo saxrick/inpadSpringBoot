@@ -22,7 +22,7 @@ public class JsonToMapConverter implements AttributeConverter<JSONObject, String
         String data = null;
         try
         {
-            System.out.println("aboba" + obj.get("polygonInfo").getClass());
+//            System.out.println("aboba" + obj.get("polygonInfo"));
             data = obj.toString();
 //            System.out.println(data);
         }

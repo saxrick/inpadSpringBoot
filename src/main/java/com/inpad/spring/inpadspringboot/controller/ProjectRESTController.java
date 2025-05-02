@@ -55,6 +55,7 @@ public class ProjectRESTController {
     @PutMapping("/{id}")
     public void updateProject(@RequestBody SignUpProjectDTO projectDTO, @PathVariable int id){
         projectService.saveUpdatedProject(projectDTO, id);
+
         log.info(java.time.LocalDateTime.now() + " Обновлен проект с id " + id);
     }
 

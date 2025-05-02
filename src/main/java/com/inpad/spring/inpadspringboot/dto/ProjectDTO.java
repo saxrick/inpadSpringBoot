@@ -1,7 +1,6 @@
 package com.inpad.spring.inpadspringboot.dto;
 
-import com.inpad.spring.inpadspringboot.entity.Project;
-import com.inpad.spring.inpadspringboot.entity.User;
+import com.inpad.spring.inpadspringboot.entity.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,6 +12,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -27,8 +27,15 @@ public class ProjectDTO {
     private String projectname;
     private boolean state;
     private String projectinfo;
-    private JSONObject projectdata;
+    private GeoDataContainer projectdata;
     private List<UserDTO> userList;
+    private Date dtCreation;
+    private Date dtUpdate;
+    private String startCoordinates;
+    private String insideCoordinates;
+    private String outsideCoordinates;
+    private List<CoefficientFactual> coefficientFactualList;
+    private List<CoefficientNormative> coefficientNormativeList;
 
 
     @Transactional
@@ -40,6 +47,13 @@ public class ProjectDTO {
         projectDTO.setState(project.isState());
         projectDTO.setProjectinfo(project.getProjectinfo());
         projectDTO.setProjectdata(project.getProjectdata());
+        projectDTO.setDtCreation(project.getDtCreation());
+        projectDTO.setDtUpdate(project.getDtUpdate());
+        projectDTO.setStartCoordinates(project.getStartCoordinates());
+        projectDTO.setInsideCoordinates(project.getInsideCoordinates());
+        projectDTO.setOutsideCoordinates(project.getOutsideCoordinates());
+        projectDTO.setCoefficientFactualList(project.getCoefficientFactualList());
+        projectDTO.setCoefficientNormativeList(project.getCoefficientNormativeList());
         for (User user : project.getUsers()){
             UserDTO userDTO = new UserDTO();
             userDTO.setId(user.getId());
@@ -62,7 +76,6 @@ public class ProjectDTO {
         }
         return projectDTOList;
     }
-
 
 
 
@@ -106,11 +119,67 @@ public class ProjectDTO {
         this.projectinfo = projectinfo;
     }
 
-    public JSONObject getProjectdata() {
+    public GeoDataContainer getProjectdata() {
         return projectdata;
     }
 
-    public void setProjectdata(JSONObject projectdata) {
+    public void setProjectdata(GeoDataContainer projectdata) {
         this.projectdata = projectdata;
+    }
+
+    public Date getDtCreation() {
+        return dtCreation;
+    }
+
+    public Date getDtUpdate() {
+        return dtUpdate;
+    }
+
+    public String getStartCoordinates() {
+        return startCoordinates;
+    }
+
+    public void setStartCoordinates(String startCoordinates) {
+        this.startCoordinates = startCoordinates;
+    }
+
+    public void setDtCreation(Date dtCreation) {
+        this.dtCreation = dtCreation;
+    }
+
+    public void setDtUpdate(Date dtUpdate) {
+        this.dtUpdate = dtUpdate;
+    }
+
+    public String getInsideCoordinates() {
+        return insideCoordinates;
+    }
+
+    public void setInsideCoordinates(String insideCoordinates) {
+        this.insideCoordinates = insideCoordinates;
+    }
+
+    public String getOutsideCoordinates() {
+        return outsideCoordinates;
+    }
+
+    public void setOutsideCoordinates(String outsideCoordinates) {
+        this.outsideCoordinates = outsideCoordinates;
+    }
+
+    public List<CoefficientFactual> getCoefficientFactualList() {
+        return coefficientFactualList;
+    }
+
+    public void setCoefficientFactualList(List<CoefficientFactual> coefficientFactualList) {
+        this.coefficientFactualList = coefficientFactualList;
+    }
+
+    public List<CoefficientNormative> getCoefficientNormativeList() {
+        return coefficientNormativeList;
+    }
+
+    public void setCoefficientNormativeList(List<CoefficientNormative> coefficientNormativeList) {
+        this.coefficientNormativeList = coefficientNormativeList;
     }
 }

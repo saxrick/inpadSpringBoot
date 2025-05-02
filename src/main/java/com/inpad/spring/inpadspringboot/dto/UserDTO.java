@@ -1,7 +1,6 @@
 package com.inpad.spring.inpadspringboot.dto;
 
 
-import com.inpad.spring.inpadspringboot.entity.Model;
 import com.inpad.spring.inpadspringboot.entity.Project;
 import com.inpad.spring.inpadspringboot.entity.User;
 import lombok.*;
@@ -26,7 +25,6 @@ public class UserDTO {
     private String role;
     private String token;
     private List<ProjectDTO> projectList;
-    private List<ModelDTO> modelList;
 
 
     public int getId() {
@@ -89,7 +87,6 @@ public class UserDTO {
     @Transactional
     public UserDTO getUserDTO(User user){
         projectList = new ArrayList<>();
-        modelList = new ArrayList<>();
         UserDTO userDTO = new UserDTO();
         userDTO.setId(user.getId());
         userDTO.setUsername(user.getUsername());
@@ -103,19 +100,14 @@ public class UserDTO {
             projectDTO.setState(project.isState());
             projectDTO.setProjectinfo(project.getProjectinfo());
             projectDTO.setProjectdata(project.getProjectdata());
+            projectDTO.setStartCoordinates(project.getStartCoordinates());
+            projectDTO.setInsideCoordinates(project.getInsideCoordinates());
+            projectDTO.setOutsideCoordinates(project.getOutsideCoordinates());
+            projectDTO.setCoefficientNormativeList(project.getCoefficientNormativeList());
+            projectDTO.setCoefficientFactualList(project.getCoefficientFactualList());
             projectList.add(projectDTO);
         }
         userDTO.setProjectList(projectList);
-
-        for (Model model : user.getModels()){
-            ModelDTO modelDTO = new ModelDTO();
-            modelDTO.setId(model.getId());
-            modelDTO.setModelname(model.getModelname());
-            modelDTO.setState(model.isState());
-            modelDTO.setModelinfo(model.getModelinfo());
-            modelList.add(modelDTO);
-        }
-        userDTO.setModelList(modelList);
 
         return userDTO;
     }

@@ -157,3 +157,33 @@ drop table coefficient_factual cascade;
 drop table coefficient_normative cascade;
 
 drop table user_project cascade;
+
+
+CREATE OR REPLACE FUNCTION set_dt_creation()
+    RETURNS TRIGGER AS $$
+BEGIN
+    IF NEW.dt_creation IS NULL THEN
+        NEW.dt_creation := CURRENT_TIMESTAMP;
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE TRIGGER dt_creation
+    before insert on projects
+    FOR EACH ROW
+EXECUTE FUNCTION set_dt_creation();
+
+
+CREATE OR REPLACE FUNCTION set_dt_update()
+    RETURNS TRIGGER AS $$
+BEGIN
+    NEW.dt_update := CURRENT_TIMESTAMP;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_set_dt_update
+    BEFORE UPDATE ON projects
+    FOR EACH ROW
+EXECUTE FUNCTION set_dt_update();

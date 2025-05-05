@@ -150,13 +150,6 @@ CREATE TABLE coefficient_factual (
      FOREIGN KEY (project_id) REFERENCES projects(id)
 );
 
-drop table projects cascade;
-drop table tech_econ_performance_normative cascade;
-drop table tech_econ_performance_factual cascade;
-drop table coefficient_factual cascade;
-drop table coefficient_normative cascade;
-
-drop table user_project cascade;
 
 
 CREATE OR REPLACE FUNCTION set_dt_creation()

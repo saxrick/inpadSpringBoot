@@ -1,0 +1,15 @@
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8180/realms/inpad_scp
+          jwk-set-uri: ${spring.security.resourceserver.oauth2.jwt.issuer-uri}/protocol/openid-connect/certs
+server:
+  port: 8080
+
+jwt:
+auth:
+  converter:
+    resource-id: inpad_scp
+    principle-attribute: preferred_username

@@ -34,9 +34,9 @@ public class ProjectWSController {
     SimpUserRegistry userRegistry;
 
     @MessageMapping("/sendMessage/{id}")
-    @SendTo("/topic/messages")
+    @SendTo("/topic/messages/{id}")
     public GeoDataContainer sendMessage(GeoDataContainer geoDataContainer) {
-        List<String> subs = getSubscribers("/topic/messages");
+        List<String> subs = getSubscribers("/topic/messages/");
         System.out.println(subs);
         System.out.println(geoDataContainer);
         GeoDataContainer projectdata = projectService.getProject(geoDataContainer.getProjectId()).getProjectdata();

@@ -180,3 +180,6 @@ CREATE TRIGGER trigger_set_dt_update
     BEFORE UPDATE ON projects
     FOR EACH ROW
 EXECUTE FUNCTION set_dt_update();
+
+
+select version()

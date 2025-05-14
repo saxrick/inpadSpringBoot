@@ -1,5 +1,6 @@
 package com.inpad.spring.inpadspringboot.controller;
 
+import com.inpad.spring.inpadspringboot.converter.JwtAuthConverter;
 import com.inpad.spring.inpadspringboot.dto.ProjectDTO;
 import com.inpad.spring.inpadspringboot.dto.SignUpProjectDTO;
 import com.inpad.spring.inpadspringboot.dto.UserDTO;
@@ -8,8 +9,13 @@ import com.inpad.spring.inpadspringboot.entity.User;
 import com.inpad.spring.inpadspringboot.repositories.ProjectRepository;
 import com.inpad.spring.inpadspringboot.service.ProjectService;
 import lombok.RequiredArgsConstructor;
+import org.apache.tomcat.util.http.RequestUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
+import org.springframework.security.oauth2.jwt.JwtDecoders;
+import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -24,9 +30,11 @@ public class ProjectRESTController {
 
     Logger log = Logger.getLogger(ProjectRESTController.class.getName());
 
-
     @Autowired
     ProjectService projectService;
+
+    @Autowired
+    JwtAuthConverter jwtAuthConverter;
 
     @GetMapping("/all")
     public List<ProjectDTO> getAllProjects(){
@@ -36,8 +44,11 @@ public class ProjectRESTController {
     }
 
     @GetMapping("/{id}")
-    public ProjectDTO getProject(@PathVariable int id){
+    public ProjectDTO getProject(@PathVariable int id, @RequestHeader("Authorization") String jwt){
         log.info(java.time.LocalDateTime.now() + " Запрошен проект с id " + id);
+        String token = jwt.split(" ")[1];
+        Jwt jwtMapped = JwtDecoders.fromIssuerLocation("http://localhost:8180/realms/inpad_scp").decode(token);
+        System.out.println(jwtMapped);
         ProjectDTO projectDTO = new ProjectDTO();
         ProjectDTO gotProjectDTO = projectDTO.getProjectDTO(projectService.getProject(id));
         return gotProjectDTO;

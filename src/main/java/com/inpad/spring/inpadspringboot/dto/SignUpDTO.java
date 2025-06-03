@@ -17,9 +17,6 @@ import java.util.List;
 @Data
 public class SignUpDTO {
 
-    private String username;
     private String login;
-    private char[] password;
-    private boolean state;
     private List<Project> projectList;
 }

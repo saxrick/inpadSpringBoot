@@ -148,6 +148,18 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 
+			<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-jar-plugin</artifactId>
+			<configuration>
+				<archive>
+					<manifest>
+						<mainClass>com.inpad.spring.inpadspringboot.InpadSpringBootApplication.java</mainClass>
+					</manifest>
+				</archive>
+			</configuration>
+		</plugin>
+
 
 		</plugins>
 

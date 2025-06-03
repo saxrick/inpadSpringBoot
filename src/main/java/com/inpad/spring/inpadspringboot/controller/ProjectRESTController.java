@@ -48,7 +48,7 @@ public class ProjectRESTController {
         log.info(java.time.LocalDateTime.now() + " Запрошен проект с id " + id);
         String token = jwt.split(" ")[1];
         Jwt jwtMapped = JwtDecoders.fromIssuerLocation("http://localhost:8180/realms/inpad_scp").decode(token);
-        System.out.println(jwtMapped);
+        System.out.println(jwtMapped.getClaimAsString("preferred_username"));
         ProjectDTO projectDTO = new ProjectDTO();
         ProjectDTO gotProjectDTO = projectDTO.getProjectDTO(projectService.getProject(id));
         return gotProjectDTO;

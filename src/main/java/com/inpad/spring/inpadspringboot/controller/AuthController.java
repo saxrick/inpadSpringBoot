@@ -4,6 +4,7 @@ package com.inpad.spring.inpadspringboot.controller;
 import com.inpad.spring.inpadspringboot.dto.CredentialsDTO;
 import com.inpad.spring.inpadspringboot.dto.SignUpDTO;
 import com.inpad.spring.inpadspringboot.dto.UserDTO;
+import com.inpad.spring.inpadspringboot.entity.User;
 import com.inpad.spring.inpadspringboot.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -32,11 +33,9 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<UserDTO> register(@RequestBody SignUpDTO signUpDTO){
-        UserDTO createdUser = userService.register(signUpDTO);
-//        System.out.println(createdUser);
-//        createdUser.setToken(userAuthProvider.createToken(signUpDTO.getLogin()));
-        log.info(java.time.LocalDateTime.now() + " Зарегистрирован пользователь: " + signUpDTO.getLogin());
+    public ResponseEntity<User> register(@RequestBody User user){
+        User createdUser = userService.createUser(user);
+        log.info(java.time.LocalDateTime.now() + " Зарегистрирован пользователь: " + user.getLogin());
         return ResponseEntity.created(URI.create("/users/" + createdUser.getId()))
                 .body(createdUser);
     }

@@ -19,13 +19,8 @@ import java.util.List;
 public class UserDTO {
 
     private int id;
-    private String username;
-    private boolean state;
     private String login;
-    private String role;
-    private String token;
     private List<ProjectDTO> projectList;
-
 
     public int getId() {
         return id;
@@ -33,22 +28,6 @@ public class UserDTO {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public boolean isState() {
-        return state;
-    }
-
-    public void setState(boolean state) {
-        this.state = state;
     }
 
     public String getLogin() {
@@ -59,22 +38,6 @@ public class UserDTO {
         this.login = login;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
     public List<ProjectDTO> getProjectList() {
         return projectList;
     }
@@ -83,16 +46,12 @@ public class UserDTO {
         this.projectList = projectList;
     }
 
-
     @Transactional
     public UserDTO getUserDTO(User user){
         projectList = new ArrayList<>();
         UserDTO userDTO = new UserDTO();
         userDTO.setId(user.getId());
-        userDTO.setUsername(user.getUsername());
-        userDTO.setState(user.isState());
         userDTO.setLogin(user.getLogin());
-        userDTO.setRole(user.getRole());
         for (Project project : user.getProjects()){
             ProjectDTO projectDTO = new ProjectDTO();
             projectDTO.setId(project.getId());
@@ -100,6 +59,8 @@ public class UserDTO {
             projectDTO.setState(project.isState());
             projectDTO.setProjectinfo(project.getProjectinfo());
             projectDTO.setProjectdata(project.getProjectdata());
+            projectDTO.setDtUpdate(project.getDtUpdate());
+            projectDTO.setDtCreation(project.getDtCreation());
             projectDTO.setStartCoordinates(project.getStartCoordinates());
             projectDTO.setInsideCoordinates(project.getInsideCoordinates());
             projectDTO.setOutsideCoordinates(project.getOutsideCoordinates());

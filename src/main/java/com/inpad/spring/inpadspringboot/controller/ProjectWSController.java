@@ -37,15 +37,10 @@ public class ProjectWSController {
     @SendTo("/topic/messages/{id}")
     public GeoDataContainer sendMessage(GeoDataContainer geoDataContainer) {
         List<String> subs = getSubscribers("/topic/messages/");
-        System.out.println(subs);
-        System.out.println(geoDataContainer);
         GeoDataContainer projectdata = projectService.getProject(geoDataContainer.getProjectId()).getProjectdata();
-// Добавить сравнение хэшкода
-
         if (!geoDataContainer.equals(projectdata)) {
             return projectDataService.updateProjectData(geoDataContainer.getProjectId(), geoDataContainer);
         }
-
         else {
             return projectdata;
         }

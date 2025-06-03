@@ -48,28 +48,23 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findByLogin(credentialsDTO.getLogin())
                 .orElseThrow(() -> new AppException("Неверный логин", HttpStatus.NOT_FOUND));
 
+        return userMapper.toUserDTO(user);
 
-        if(passwordEncoder.matches(CharBuffer.wrap(credentialsDTO.getPassword()), user.getPassword())){
-            return userMapper.toUserDTO(user);
-        }
-        throw new AppException("Неверный пароль", HttpStatus.BAD_REQUEST);
     }
 
-    public UserDTO register(SignUpDTO userDTO) {
+    public User createUser(User user) {
 
-
-        Optional<User> optionalUser = userRepository.findByLogin(userDTO.getLogin());
+        Optional<User> optionalUser = userRepository.findByLogin(user.getLogin());
 
         if (optionalUser.isEmpty()) {
 
-            User user = userMapper.signUpToUser(userDTO);
 
-            user.setPassword(passwordEncoder.encode(CharBuffer.wrap(userDTO.getPassword())));
-            user.setState(userDTO.isState());
+//            user.setPassword(passwordEncoder.encode(CharBuffer.wrap(userDTO.getPassword())));
+//            user.setState(userDTO.isState());
 
             User savedUser = userRepository.save(user);
 
-            return userMapper.toUserDTO(savedUser);
+            return savedUser;
         } else{
             throw new AppException("Пользователь с таким логином уже существует", HttpStatus.BAD_REQUEST);
         }

@@ -41,9 +41,6 @@ public class CoefficientFactualServiceImpl implements CoefficientFactualService 
                 .findAny()
                 .orElse(null);
 
-        System.out.println(feature.getGeometry().getCoordinates());
-
-        System.out.println(Math.round(areaCalculator.polygonArea(feature.getGeometry().getCoordinates()) * 100) / 100);
 
         TechEconPerformanceFactual createdTechEconPerformanceFactual = new TechEconPerformanceFactual();
         createdTechEconPerformanceFactual.setFloorNum(polygonInfo.getFloors());

@@ -1,13 +1,13 @@
-package com.inpad.spring.inpadspringboot;
+class ApiSimulation extends Simulation {
+	val httpProtocol = http.baseUrl("http://localhost:8080")
+			.headers(Map("Content-Type" → "application/json"))
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+	val scn = scenario("Project API Load Test")
+			.exec(http("GET /projects")
+					.get("http://localhost:8080/projects.23")
+					.check(status.is(200)))
 
-@SpringBootTest
-class InpadSpringBootApplicationTests {
-
-	@Test
-	void contextLoads() {
-	}
-
+	setUp(
+			scn.injectOpen(atOnceUsers(50))
+			).protocols(httpProtocol)
 }

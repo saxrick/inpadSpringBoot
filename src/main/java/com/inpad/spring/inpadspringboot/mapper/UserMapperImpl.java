@@ -27,7 +27,7 @@ public class UserMapperImpl implements UserMapper {
 
         User.UserBuilder user = User.builder();
 
-        user.username( userDTO.getUsername() );
+//        user.username( userDTO.getUsername() );
         user.login( userDTO.getLogin() );
         user.projects(userDTO.getProjectList());
 

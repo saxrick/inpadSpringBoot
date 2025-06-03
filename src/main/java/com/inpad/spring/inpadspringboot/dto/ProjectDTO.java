@@ -38,6 +38,7 @@ public class ProjectDTO {
     private List<CoefficientNormative> coefficientNormativeList;
 
 
+
     @Transactional
     public ProjectDTO getProjectDTO(Project project){
         userList = new ArrayList<>();
@@ -57,10 +58,7 @@ public class ProjectDTO {
         for (User user : project.getUsers()){
             UserDTO userDTO = new UserDTO();
             userDTO.setId(user.getId());
-            userDTO.setUsername(user.getUsername());
-            userDTO.setState(user.isState());
             userDTO.setLogin(user.getLogin());
-            userDTO.setRole(user.getRole());
             userList.add(userDTO);
         }
         projectDTO.setUserList(userList);

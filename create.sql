@@ -5,13 +5,11 @@
 
 create table users (
 	id bigint NOT NULL GENERATED ALWAYS AS IDENTITY,
-	username varchar(255),
-	state bool,
 	login varchar(255),
-	password varchar(255),
-    role varchar(255),
 	PRIMARY KEY (id)
 );
+
+drop table users cascade;
 
 CREATE TABLE projects (
     id bigint NOT NULL GENERATED ALWAYS AS IDENTITY,
@@ -180,6 +178,3 @@ CREATE TRIGGER trigger_set_dt_update
     BEFORE UPDATE ON projects
     FOR EACH ROW
 EXECUTE FUNCTION set_dt_update();
-
-
-select version()

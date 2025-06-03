@@ -1,10 +1,6 @@
 package com.inpad.spring.inpadspringboot.service;
 
-import com.inpad.spring.inpadspringboot.entity.Feature;
-import com.inpad.spring.inpadspringboot.entity.Geometry;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class AreaCalculatorImpl implements AreaCalculator{
@@ -42,6 +38,5 @@ public class AreaCalculatorImpl implements AreaCalculator{
         }
         return total * FACTOR;
     }
-
 
 }

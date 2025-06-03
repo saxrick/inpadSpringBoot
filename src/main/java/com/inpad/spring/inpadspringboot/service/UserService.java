@@ -14,5 +14,5 @@ public interface UserService {
     public void deleteUser(int id);
     public UserDTO findByLogin(String login);
     public UserDTO login(CredentialsDTO credentialsDTO);
-    public UserDTO register(SignUpDTO userDTO);
+    public User createUser(User user);
 }
